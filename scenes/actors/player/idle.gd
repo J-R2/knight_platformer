@@ -4,11 +4,7 @@ extends PlayerState
 func enter() -> void:
 	# play the idle animation and set the collision size/orientation
 	player.animation_player.play(IDLE.to_lower())
-	player.collision_shape_2d.shape.size = player.DEFAULT_COLLISION_SIZE
-	if player.sprite_2d.flip_h == true:
-		player.collision_shape_2d.position.x = player.DEFAULT_COLLISION_POS.x * -1
-	else :
-		player.collision_shape_2d.position = player.DEFAULT_COLLISION_POS
+	player.set_collision_shape()
 
 
 func physics_update(delta :float) -> void :

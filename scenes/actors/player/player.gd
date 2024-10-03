@@ -9,7 +9,7 @@ const DEFAULT_COLLISION_SIZE = Vector2(18, 38) ## the default size of the collis
 const DEFAULT_COLLISION_POS = Vector2(-5, -19) ## the default position of the collision rectangle
 
 
-var direction := Vector2.ZERO ## keeps track of the players facing direction left or right, sign()ed
+var direction := Vector2.RIGHT ## keeps track of the players facing direction left or right, sign()ed
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -18,14 +18,22 @@ var direction := Vector2.ZERO ## keeps track of the players facing direction lef
 
 func _ready() -> void:
 	# set the collision shapes default values
-	collision_shape_2d.position = DEFAULT_COLLISION_POS
-	collision_shape_2d.shape.size = DEFAULT_COLLISION_SIZE
+	set_collision_shape()
+
 
 
 
 func _physics_process(delta: float) -> void:
 	# set the sprites orientation
-	if direction.x == -1:
-		sprite_2d.flip_h = true
-	else:
-		sprite_2d.flip_h = false
+	sprite_2d.flip_h = true if direction.x < 0 else false
+
+
+
+func set_collision_orientation(collision_position :Vector2 = DEFAULT_COLLISION_POS) -> void :
+	collision_shape_2d.position.x = collision_position.x * direction.x
+
+
+func set_collision_shape(collision_position :Vector2 = DEFAULT_COLLISION_POS, collision_size :Vector2 = DEFAULT_COLLISION_SIZE) -> void :
+	collision_shape_2d.position = collision_position
+	collision_shape_2d.shape.size = collision_size
+	set_collision_orientation(collision_position)

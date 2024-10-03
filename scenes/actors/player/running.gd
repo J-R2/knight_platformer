@@ -3,17 +3,12 @@ extends PlayerState
 
 func enter() -> void :
 	player.animation_player.play(RUNNING.to_lower())
-	player.collision_shape_2d.shape.size = player.DEFAULT_COLLISION_SIZE
+	player.set_collision_shape()
 
 
 
 func physics_update(delta: float) -> void:
-	# set the collision orientation, in physics since you can turn while running
-	if player.sprite_2d.flip_h == true:
-		player.collision_shape_2d.position.x = player.DEFAULT_COLLISION_POS.x * -1
-	else :
-		player.collision_shape_2d.position = player.DEFAULT_COLLISION_POS
-		
+	player.set_collision_orientation()
 	# get the running direction from the user input
 	var move_direction := Vector2(Input.get_axis("move_left", "move_right"), 0)
 	if move_direction.sign() != Vector2.ZERO:

@@ -14,15 +14,13 @@ func enter() -> void :
 	_distance_travelled = 0.0
 	# play the animation and set the collision size
 	player.animation_player.play(SLIDING.to_lower())
-	player.collision_shape_2d.shape.size = SLIDING_COLLISION_SIZE
-	if player.sprite_2d.flip_h == true:
-		player.collision_shape_2d.position.x = SLIDING_COLLISION_POS.x * -1
-	else :
-		player.collision_shape_2d.position = SLIDING_COLLISION_POS
+	player.set_collision_shape(SLIDING_COLLISION_POS, SLIDING_COLLISION_SIZE)
+	
 
 
 
 func physics_update(delta :float) -> void :
+	player.set_collision_orientation(SLIDING_COLLISION_POS)
 	# add gravity
 	player.velocity.y += player.GRAVITY
 	# move the player left if going left

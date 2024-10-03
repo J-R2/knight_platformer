@@ -7,7 +7,7 @@ func enter() -> void :
 	# play the jump animation
 	player.animation_player.play(JUMPING.to_lower())
 	# set the jumping collision size
-	player.collision_shape_2d.shape.size = player.DEFAULT_COLLISION_SIZE
+	player.set_collision_shape()
 	# add the jump force to the y velocity
 	player.velocity.y += -JUMP_FORCE
 	# move the player
@@ -15,11 +15,7 @@ func enter() -> void :
 	
 	
 func physics_update(delta:float) -> void :
-	# # set the collision orientation, in physics since you can turn while mid-air
-	if player.sprite_2d.flip_h == true:
-		player.collision_shape_2d.position.x = player.DEFAULT_COLLISION_POS.x * -1
-	else :
-		player.collision_shape_2d.position = player.DEFAULT_COLLISION_POS
+	player.set_collision_orientation()
 	# get the move direction from the user input
 	var move_direction := Vector2(Input.get_axis("move_left", "move_right"), 0)
 	if move_direction.sign() != Vector2.ZERO:
