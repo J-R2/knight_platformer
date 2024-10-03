@@ -13,6 +13,8 @@ func physics_update(delta :float) -> void :
 	else:
 		if Input.is_action_just_pressed("jump"):
 			finished.emit(JUMPING)
+		if Input.is_action_just_pressed("crouch"):
+			finished.emit(CROUCHING)
 		# don't change state if movement is effectively 0
 		if Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right") :
 			return

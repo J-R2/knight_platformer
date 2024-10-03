@@ -37,3 +37,13 @@ func set_collision_shape(collision_position :Vector2 = DEFAULT_COLLISION_POS, co
 	collision_shape_2d.position = collision_position
 	collision_shape_2d.shape.size = collision_size
 	set_collision_orientation(collision_position)
+
+func move_player(delta:float) -> void :
+	var move_direction := Vector2(Input.get_axis("move_left", "move_right"), 0)
+	if move_direction.sign() != Vector2.ZERO:
+		direction.x = move_direction.sign().x
+	# add the gravity
+	velocity.y += GRAVITY * delta
+	# move the player
+	velocity.x = move_direction.x * speed
+	move_and_slide()

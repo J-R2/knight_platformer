@@ -1,7 +1,7 @@
 extends PlayerState
 
 const SLIDING_FORCE := 80.0 ## the sliding force
-const SLIDING_DISTANCE := 30.0 ## the max distance to slide
+const SLIDING_DISTANCE := 50.0 ## the max distance to slide
 
 const SLIDING_COLLISION_SIZE = Vector2(24, 24)
 const SLIDING_COLLISION_POS = Vector2(1, -12)
