@@ -1,5 +1,5 @@
 ![screenshot](screenshots/sliding_left_bug.png)
-
+![screenshot2](screenshots/sliding_left_bug2.png)
 ### Credits
 
 
