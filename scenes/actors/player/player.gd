@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 
 @export var speed := 250.0 ## the player's speed
-const MAX_SPEED := 300.0 ## the max speed (not used)
+const MAX_SPEED := 250.0 ## the max speed (not used)
 const GRAVITY := 980.0 ## the gravity
 const DEFAULT_COLLISION_SIZE = Vector2(18, 38) ## the default size of the collision_shape2d rectangle
 const DEFAULT_COLLISION_POS = Vector2(-5, -19) ## the default position of the collision rectangle
@@ -16,6 +16,11 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 
+#================================================================================
+@onready var state_label: Label = $StateLabel
+#================================================================================
+
+
 func _ready() -> void:
 	# set the collision shapes default values
 	set_collision_shape()
@@ -26,6 +31,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# set the sprites orientation
 	sprite_2d.flip_h = true if direction.x < 0 else false
+#================================================================================
+	state_label.text = get_node("StateMachine").current_state.name
+#================================================================================
 
 
 

@@ -1,7 +1,7 @@
 extends PlayerState
 
 
-const JUMP_FORCE := 400.0
+const JUMP_FORCE := 350.0
 
 func enter() -> void :
 	# play the jump animation

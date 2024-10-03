@@ -438,3 +438,11 @@ script = ExtResource("11_ccnj4")
 
 [node name="Crouching" type="Node" parent="StateMachine"]
 script = ExtResource("13_e2som")
+
+[node name="StateLabel" type="Label" parent="."]
+offset_left = -35.0
+offset_top = -64.0
+offset_right = 25.0
+offset_bottom = -41.0
+text = "test"
+horizontal_alignment = 1

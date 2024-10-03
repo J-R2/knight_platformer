@@ -10,7 +10,11 @@ func enter() -> void :
 	# play the "crouching" animation and set the collision size
 	_reset_crouch_animation()
 	player.set_collision_shape(CROUCHING_COLLISION_POS, CROUCHING_COLLISION_SIZE)
+	player.speed = player.MAX_SPEED * .6
 	
+
+func exit() -> void :
+	player.speed = player.MAX_SPEED
 
 
 func physics_update(delta :float) -> void :
