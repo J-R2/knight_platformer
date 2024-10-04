@@ -3,7 +3,7 @@ extends PlayerState
 const SLIDING_COLLISION_SIZE = Vector2(24, 24)
 const SLIDING_COLLISION_POS = Vector2(1, -12)
 
-const SLIDING_SPEED = player.MAX_SPEED * 1.5
+const SLIDING_SPEED = player.MAX_SPEED * 1.4
 const SLIDING_SPEED_SCALE = 1.3
 
 var next_state :String = IDLE
@@ -19,14 +19,13 @@ func enter() -> void :
 	max_slide_time = (player.animation_player.current_animation_length / SLIDING_SPEED_SCALE) + 0.05
 	slide_timer = 0.0
 
-	
-	
-	
+
+
 func physics_update(delta :float) -> void :
 	player.set_collision_orientation(SLIDING_COLLISION_POS)
 	# add gravity
 	player.velocity.y += player.GRAVITY
-	player.velocity.x += (SLIDING_SPEED * player.direction.x) * delta
+	player.velocity.x = (SLIDING_SPEED * player.direction.x)
 	slide_timer += delta
 	player.move_and_slide()
 	

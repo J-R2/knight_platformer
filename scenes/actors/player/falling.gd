@@ -1,20 +1,29 @@
 extends PlayerState
 
+var next_state := IDLE
+
+
 func enter() -> void :
 	# play the falling animation and set the collision size
 	player.animation_player.play(FALLING.to_lower())
 	player.set_collision_shape()
-
-
+	next_state = IDLE
 
 
 func physics_update(delta :float) -> void :
 	# set the collision orientation, in physics since you can turn while mid-air
 	player.set_collision_orientation()
 	player.move_player(delta)
-	# if touching floor and not moving idle, if moving run
-	if player.is_on_floor():
+	if Input.is_action_just_pressed("crouch"):
+		next_state = SLIDING
+	if Input.is_action_just_pressed("roll"):
+		next_state = ROLLING
+	if player.is_on_floor() and next_state not in [SLIDING, ROLLING]:
 		if is_zero_approx(player.velocity.x):
-			finished.emit(IDLE)
+			next_state = IDLE
 		else:
-			finished.emit(RUNNING)
+			next_state = RUNNING
+		finished.emit(next_state)
+		return
+	elif player.is_on_floor():
+		finished.emit(next_state)

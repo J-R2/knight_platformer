@@ -5,8 +5,8 @@ const ROLLING_COLLISION_SIZE = Vector2(22, 27)
 ## the collision shape's position when rolling
 const ROLLING_COLLISION_POS = Vector2(-4, -13.5)
 
-const ROLLING_SPEED = player.MAX_SPEED * 1.5
-const ROLLING_SPEED_SCALE = 1
+const ROLLING_SPEED = player.MAX_SPEED * 1.7
+const ROLLING_SPEED_SCALE = 1.1
  
 var max_roll_time := 0.0
 var roll_timer := 0.0
@@ -25,7 +25,7 @@ func enter() -> void :
 func physics_update(delta:float) -> void :
 	player.set_collision_orientation(ROLLING_COLLISION_POS)
 	player.velocity.y += player.GRAVITY * delta
-	player.velocity.x += (ROLLING_SPEED * player.direction.x) * delta
+	player.velocity.x = (ROLLING_SPEED * player.direction.x)
 	roll_timer += delta
 	player.move_and_slide()
 	if roll_timer > max_roll_time:
