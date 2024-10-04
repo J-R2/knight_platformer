@@ -2,9 +2,12 @@ class_name Player
 extends CharacterBody2D
 
 
-@export var speed := 250.0 ## the player's speed
-const MAX_SPEED := 250.0 ## the max speed (not used)
-const GRAVITY := 980.0 ## the gravity
+
+const MAX_SPEED := 200.0
+
+
+@export var speed := MAX_SPEED
+const GRAVITY := 900.0 ## the gravity
 const DEFAULT_COLLISION_SIZE = Vector2(18, 38) ## the default size of the collision_shape2d rectangle
 const DEFAULT_COLLISION_POS = Vector2(-5, -19) ## the default position of the collision rectangle
 

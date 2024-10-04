@@ -9,6 +9,7 @@ const JUMPING := "Jumping"
 const FALLING := "Falling"
 const SLIDING := "Sliding"
 const CROUCHING := "Crouching"
+const ROLLING := "Rolling"
 
 ## a reference to the player
 var player :Player = null

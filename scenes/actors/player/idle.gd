@@ -1,10 +1,17 @@
 extends PlayerState
 
 
+var collision := Vector2.ZERO
+var touching_wall :bool = false
+var touch_count = 0
+
 func enter() -> void:
 	# play the idle animation and set the collision size/orientation
 	player.animation_player.play(IDLE.to_lower())
 	player.set_collision_shape()
+
+
+
 
 
 func physics_update(delta :float) -> void :
@@ -15,8 +22,20 @@ func physics_update(delta :float) -> void :
 			finished.emit(JUMPING)
 		if Input.is_action_just_pressed("crouch"):
 			finished.emit(CROUCHING)
-		# don't change state if movement is effectively 0
 		if Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right") :
+			finished.emit(IDLE)
 			return
 		if Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") :
-			finished.emit(RUNNING)
+			if player.is_on_wall():
+				collision = player.get_last_slide_collision().get_normal()
+				collision.x *= -1
+				touching_wall = true
+			if touching_wall == true:
+				if collision.x == 1 and Input.is_action_pressed("move_left"):
+					touching_wall = false
+					finished.emit(RUNNING)
+				elif collision.x == -1 and Input.is_action_pressed("move_right"):
+					touching_wall = false
+					finished.emit(RUNNING)
+			else:
+				finished.emit(RUNNING)

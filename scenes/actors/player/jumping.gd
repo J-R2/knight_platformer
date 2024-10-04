@@ -3,6 +3,7 @@ extends PlayerState
 
 const JUMP_FORCE := 350.0
 
+
 func enter() -> void :
 	# play the jump animation
 	player.animation_player.play(JUMPING.to_lower())

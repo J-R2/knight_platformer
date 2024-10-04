@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://berkqovuuonc"]
+[gd_scene load_steps=27 format=3 uid="uid://berkqovuuonc"]
 
 [ext_resource type="Texture2D" uid="uid://cipfdi50s1se0" path="res://scenes/actors/player/art/idle.png" id="1_8pm4j"]
 [ext_resource type="Script" path="res://scenes/actors/player/player.gd" id="1_jk7m2"]
@@ -10,13 +10,15 @@
 [ext_resource type="Texture2D" uid="uid://0o3deayilqj1" path="res://scenes/actors/player/art/slide.png" id="6_wui68"]
 [ext_resource type="Script" path="res://scenes/actors/player/running.gd" id="7_i8041"]
 [ext_resource type="Texture2D" uid="uid://cur6rxe5xbg16" path="res://scenes/actors/player/art/crouch.png" id="7_sqqjf"]
+[ext_resource type="Texture2D" uid="uid://d3kumlqi1wa2d" path="res://scenes/actors/player/art/roll.png" id="8_4efqa"]
 [ext_resource type="Script" path="res://scenes/actors/player/jumping.gd" id="8_oo06g"]
 [ext_resource type="Script" path="res://scenes/actors/player/falling.gd" id="10_jv6h2"]
 [ext_resource type="Script" path="res://scenes/actors/player/sliding.gd" id="11_ccnj4"]
 [ext_resource type="Script" path="res://scenes/actors/player/crouching.gd" id="13_e2som"]
+[ext_resource type="Script" path="res://scenes/actors/player/rolling.gd" id="16_q67o4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h3sj0"]
-size = Vector2(18, 38)
+size = Vector2(18, 33)
 
 [sub_resource type="Animation" id="Animation_6j42w"]
 length = 0.001
@@ -283,6 +285,59 @@ tracks/3/keys = {
 "values": [0, 1, 2]
 }
 
+[sub_resource type="Animation" id="Animation_15d0f"]
+resource_name = "rolling"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_4efqa")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
 [sub_resource type="Animation" id="Animation_01doh"]
 resource_name = "run"
 loop_mode = 1
@@ -396,6 +451,7 @@ _data = {
 "falling": SubResource("Animation_h81fn"),
 "idle": SubResource("Animation_ttse1"),
 "jumping": SubResource("Animation_cbe4q"),
+"rolling": SubResource("Animation_15d0f"),
 "running": SubResource("Animation_01doh"),
 "sliding": SubResource("Animation_k60ed")
 }
@@ -409,7 +465,7 @@ texture = ExtResource("1_8pm4j")
 hframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, -19)
+position = Vector2(-1, -16.5)
 shape = SubResource("RectangleShape2D_h3sj0")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -438,6 +494,9 @@ script = ExtResource("11_ccnj4")
 
 [node name="Crouching" type="Node" parent="StateMachine"]
 script = ExtResource("13_e2som")
+
+[node name="Rolling" type="Node" parent="StateMachine"]
+script = ExtResource("16_q67o4")
 
 [node name="StateLabel" type="Label" parent="."]
 offset_left = -35.0

@@ -14,8 +14,10 @@ func physics_update(delta: float) -> void:
 	# if not moving or pushing left and right simultaneously
 	if is_equal_approx(player.velocity.x, 0.0) or (Input.is_action_pressed("move_left") and Input.is_action_pressed("move_right")):
 		finished.emit(IDLE)
-		
+		return
 	if Input.is_action_just_pressed("jump"):
 		finished.emit(JUMPING)
 	if Input.is_action_just_pressed("crouch"):
 		finished.emit(SLIDING)
+	if Input.is_action_just_pressed("roll"):
+		finished.emit(ROLLING)
