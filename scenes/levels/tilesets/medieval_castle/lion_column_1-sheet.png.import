@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4d66rxxiwmuv"
-path="res://.godot/imported/brick_1-sheet.png-da9eea4c24404c9fa9ed89ef36c72b4b.ctex"
+uid="uid://cmtbbyf2og8im"
+path="res://.godot/imported/lion_column_1-sheet.png-81f5c90eea32880c50425d1b1fa738c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/levels/tilesets/medieval_castle/brick_1-sheet.png"
-dest_files=["res://.godot/imported/brick_1-sheet.png-da9eea4c24404c9fa9ed89ef36c72b4b.ctex"]
+source_file="res://scenes/levels/tilesets/medieval_castle/lion_column_1-sheet.png"
+dest_files=["res://.godot/imported/lion_column_1-sheet.png-81f5c90eea32880c50425d1b1fa738c2.ctex"]
 
 [params]
 

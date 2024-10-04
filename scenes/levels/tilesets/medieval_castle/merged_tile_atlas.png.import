@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://co3vj5e6aanjw"
-path="res://.godot/imported/medieval_castle_tilesheet.png-2a6422cf6faa65ac35af68157684eeb2.ctex"
+uid="uid://id3ppjt32vn4"
+path="res://.godot/imported/merged_tile_atlas.png-96d8a548fc4033211e2ad83cded57587.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/levels/tilesets/medieval_castle/medieval_castle_tilesheet.png"
-dest_files=["res://.godot/imported/medieval_castle_tilesheet.png-2a6422cf6faa65ac35af68157684eeb2.ctex"]
+source_file="res://scenes/levels/tilesets/medieval_castle/merged_tile_atlas.png"
+dest_files=["res://.godot/imported/merged_tile_atlas.png-96d8a548fc4033211e2ad83cded57587.ctex"]
 
 [params]
 

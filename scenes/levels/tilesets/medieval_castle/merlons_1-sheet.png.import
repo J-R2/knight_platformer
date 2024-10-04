@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4d66rxxiwmuv"
-path="res://.godot/imported/brick_1-sheet.png-da9eea4c24404c9fa9ed89ef36c72b4b.ctex"
+uid="uid://ydhjiruk630d"
+path="res://.godot/imported/merlons_1-sheet.png-894413d7e6de80dd65b3e86090030685.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/levels/tilesets/medieval_castle/brick_1-sheet.png"
-dest_files=["res://.godot/imported/brick_1-sheet.png-da9eea4c24404c9fa9ed89ef36c72b4b.ctex"]
+source_file="res://scenes/levels/tilesets/medieval_castle/merlons_1-sheet.png"
+dest_files=["res://.godot/imported/merlons_1-sheet.png-894413d7e6de80dd65b3e86090030685.ctex"]
 
 [params]
 

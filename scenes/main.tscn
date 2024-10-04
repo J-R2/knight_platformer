@@ -2,29 +2,12 @@
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_4lv1g"]
 [ext_resource type="PackedScene" uid="uid://berkqovuuonc" path="res://scenes/actors/player/player.tscn" id="1_lp82i"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_axyv0"]
-size = Vector2(666, 86)
+[ext_resource type="PackedScene" uid="uid://21hupa01bhrp" path="res://scenes/levels/level_1/level_1_map.tscn" id="2_yflwl"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4lv1g")
 
+[node name="Level1Map" parent="." instance=ExtResource("2_yflwl")]
+
 [node name="Player" parent="." instance=ExtResource("1_lp82i")]
-position = Vector2(217, 282)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(504, 1267)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-184, -915)
-shape = SubResource("RectangleShape2D_axyv0")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(-524, -1109)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_axyv0")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(150, -1005)
-rotation = 1.5708
-shape = SubResource("RectangleShape2D_axyv0")
+position = Vector2(85, 342)

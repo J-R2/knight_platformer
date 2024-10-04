@@ -8,8 +8,10 @@ const MAX_SPEED := 175.0
 
 @export var speed := MAX_SPEED
 const GRAVITY := 900.0 ## the gravity
-const DEFAULT_COLLISION_SIZE = Vector2(18, 38) ## the default size of the collision_shape2d rectangle
-const DEFAULT_COLLISION_POS = Vector2(-5, -19) ## the default position of the collision rectangle
+const DEFAULT_COLLISION_POS := Vector2(-5, -19) ## the default position of the collision shape
+const DEFAULT_COLLISION_SIZE := Vector2(18, 38)
+const DEFAULT_COLLISION_RADIUS :int = 8 ## the default size of the collision_shape2d
+const DEFAULT_COLLISION_HEIGHT :int = 38 ## the default size of the collision_shape2d
 
 
 var direction := Vector2.RIGHT ## keeps track of the players facing direction left or right, sign()ed

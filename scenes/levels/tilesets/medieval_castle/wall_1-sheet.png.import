@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4d66rxxiwmuv"
-path="res://.godot/imported/brick_1-sheet.png-da9eea4c24404c9fa9ed89ef36c72b4b.ctex"
+uid="uid://nh7lem6kgh8q"
+path="res://.godot/imported/wall_1-sheet.png-304a31e4e42421e612b106f5c7c9bfe4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/levels/tilesets/medieval_castle/brick_1-sheet.png"
-dest_files=["res://.godot/imported/brick_1-sheet.png-da9eea4c24404c9fa9ed89ef36c72b4b.ctex"]
+source_file="res://scenes/levels/tilesets/medieval_castle/wall_1-sheet.png"
+dest_files=["res://.godot/imported/wall_1-sheet.png-304a31e4e42421e612b106f5c7c9bfe4.ctex"]
 
 [params]
 
