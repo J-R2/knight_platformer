@@ -6,14 +6,14 @@ const CROUCHING_COLLISION_POS = Vector2(-3, -14)
 ## the collision shape's size when crouching
 const CROUCHING_COLLISION_RADIUS := 9
 const CROUCHING_COLLISION_HEIGHT := 28
-
+const CROUCHING_SPEED = player.MAX_SPEED * .4
 
 
 func enter() -> void :
 	# play the "crouching" animation and set the collision size
 	_reset_crouch_animation()
 	player.set_collision_shape(CROUCHING_COLLISION_POS, CROUCHING_COLLISION_RADIUS, CROUCHING_COLLISION_HEIGHT)
-	player.speed = player.MAX_SPEED * .6
+	player.speed = CROUCHING_SPEED
 	
 
 func exit() -> void :
