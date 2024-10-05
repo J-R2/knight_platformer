@@ -17,6 +17,7 @@ tile_map_data = PackedByteArray("AAACAAgADQAdAAYAAAADAAgADQAXAAYAAAAEAAgADQAcAAY
 tile_set = ExtResource("1_tdx71")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
 polygon = PackedVector2Array(259, 259, 259, 282, 366, 282, 366, 163, 352, 163)

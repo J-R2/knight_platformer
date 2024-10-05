@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://d26kyr3la0odx"]
+[gd_scene load_steps=5 format=3 uid="uid://d26kyr3la0odx"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_4lv1g"]
 [ext_resource type="PackedScene" uid="uid://berkqovuuonc" path="res://scenes/actors/player/player.tscn" id="1_lp82i"]
 [ext_resource type="PackedScene" uid="uid://21hupa01bhrp" path="res://scenes/levels/level_1/level_1_map.tscn" id="2_yflwl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oe52c"]
+size = Vector2(2, 2)
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4lv1g")
@@ -11,3 +14,15 @@ script = ExtResource("1_4lv1g")
 
 [node name="Player" parent="." instance=ExtResource("1_lp82i")]
 position = Vector2(107, 241)
+
+[node name="WallHangArea2D" type="Area2D" parent="." groups=["wall_hanging_areas"]]
+position = Vector2(419, 68)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHangArea2D"]
+shape = SubResource("RectangleShape2D_oe52c")
+
+[node name="WallHangArea2D2" type="Area2D" parent="." groups=["wall_hanging_areas"]]
+position = Vector2(448, 68)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallHangArea2D2"]
+shape = SubResource("RectangleShape2D_oe52c")

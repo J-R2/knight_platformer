@@ -19,6 +19,9 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var wall_climb_detector: Area2D = $WallClimbDetector
+@onready var wall_climb_detector_shape_2d: CollisionShape2D = $WallClimbDetector/WallClimbDetectorShape2D
+
 
 
 #================================================================================
@@ -29,7 +32,6 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 func _ready() -> void:
 	# set the collision shapes default values
 	set_collision_shape()
-
 
 
 
@@ -44,6 +46,11 @@ func _physics_process(delta: float) -> void:
 
 func set_collision_orientation(collision_position :Vector2 = DEFAULT_COLLISION_POS) -> void :
 	collision_shape_2d.position.x = collision_position.x * direction.x
+	if direction.x == -1:
+		wall_climb_detector_shape_2d.position.x = -2
+	else:
+		wall_climb_detector_shape_2d.position.x = 2
+
 
 func set_collision_shape(collision_position :Vector2 = DEFAULT_COLLISION_POS, collision_radius :int = DEFAULT_COLLISION_RADIUS, collision_height :int = DEFAULT_COLLISION_HEIGHT):
 	collision_shape_2d.position = collision_position

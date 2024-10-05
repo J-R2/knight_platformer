@@ -28,7 +28,7 @@ func enter() -> void :
 func physics_update(delta :float) -> void :
 	player.set_collision_orientation(SLIDING_COLLISION_POS)
 	# add gravity
-	player.velocity.y += player.GRAVITY
+	player.velocity.y += player.GRAVITY * delta
 	player.velocity.x = (SLIDING_SPEED * player.direction.x)
 	slide_timer += delta
 	player.move_and_slide()

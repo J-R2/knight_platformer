@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://berkqovuuonc"]
+[gd_scene load_steps=31 format=3 uid="uid://berkqovuuonc"]
 
 [ext_resource type="Texture2D" uid="uid://cipfdi50s1se0" path="res://scenes/actors/player/art/idle.png" id="1_8pm4j"]
 [ext_resource type="Script" path="res://scenes/actors/player/player.gd" id="1_jk7m2"]
@@ -12,13 +12,20 @@
 [ext_resource type="Texture2D" uid="uid://cur6rxe5xbg16" path="res://scenes/actors/player/art/crouch.png" id="7_sqqjf"]
 [ext_resource type="Texture2D" uid="uid://d3kumlqi1wa2d" path="res://scenes/actors/player/art/roll.png" id="8_4efqa"]
 [ext_resource type="Script" path="res://scenes/actors/player/jumping.gd" id="8_oo06g"]
+[ext_resource type="Texture2D" uid="uid://u206r15d1jdf" path="res://scenes/actors/player/art/wall_hang.png" id="9_4p1xx"]
 [ext_resource type="Script" path="res://scenes/actors/player/falling.gd" id="10_jv6h2"]
 [ext_resource type="Script" path="res://scenes/actors/player/sliding.gd" id="11_ccnj4"]
 [ext_resource type="Script" path="res://scenes/actors/player/crouching.gd" id="13_e2som"]
 [ext_resource type="Script" path="res://scenes/actors/player/rolling.gd" id="16_q67o4"]
+[ext_resource type="Script" path="res://scenes/actors/player/wall_hanging.gd" id="17_qlvfd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_274om"]
-height = 28.0
+radius = 8.0
+height = 38.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7uuln"]
+radius = 0.802845
+height = 1.75764
 
 [sub_resource type="Animation" id="Animation_6j42w"]
 length = 0.001
@@ -444,6 +451,58 @@ tracks/3/keys = {
 "values": [0, 1, 2, 1, 2, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_fj8v6"]
+resource_name = "wallhanging"
+length = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_4p1xx")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cpcee"]
 _data = {
 "RESET": SubResource("Animation_6j42w"),
@@ -453,10 +512,12 @@ _data = {
 "jumping": SubResource("Animation_cbe4q"),
 "rolling": SubResource("Animation_15d0f"),
 "running": SubResource("Animation_01doh"),
-"sliding": SubResource("Animation_k60ed")
+"sliding": SubResource("Animation_k60ed"),
+"wallhanging": SubResource("Animation_fj8v6")
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 floor_stop_on_slope = false
 floor_constant_speed = true
 floor_max_angle = 1.309
@@ -468,8 +529,18 @@ texture = ExtResource("1_8pm4j")
 hframes = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, -14)
+position = Vector2(-5, -19)
 shape = SubResource("CapsuleShape2D_274om")
+
+[node name="WallClimbDetector" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="WallClimbDetectorShape2D" type="CollisionShape2D" parent="WallClimbDetector"]
+position = Vector2(2, -32)
+scale = Vector2(1.24557, 1.13789)
+shape = SubResource("CapsuleShape2D_7uuln")
+disabled = true
+debug_color = Color(0.722517, 0.293774, 0.934469, 0.42)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -501,8 +572,10 @@ script = ExtResource("13_e2som")
 [node name="Rolling" type="Node" parent="StateMachine"]
 script = ExtResource("16_q67o4")
 
+[node name="WallHanging" type="Node" parent="StateMachine"]
+script = ExtResource("17_qlvfd")
+
 [node name="StateLabel" type="Label" parent="."]
-visible = false
 offset_left = -35.0
 offset_top = -64.0
 offset_right = 25.0
