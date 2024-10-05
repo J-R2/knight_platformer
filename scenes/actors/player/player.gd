@@ -9,7 +9,7 @@ const MAX_SPEED := 175.0
 @export var speed := MAX_SPEED
 const GRAVITY := 900.0 ## the gravity
 const DEFAULT_COLLISION_POS := Vector2(-5, -19) ## the default position of the collision shape
-const DEFAULT_COLLISION_SIZE := Vector2(18, 38)
+const DEFAULT_COLLISION_SIZE := Vector2(18, 38) ##NOTICE deprecated
 const DEFAULT_COLLISION_RADIUS :int = 8 ## the default size of the collision_shape2d
 const DEFAULT_COLLISION_HEIGHT :int = 38 ## the default size of the collision_shape2d
 
@@ -45,10 +45,10 @@ func _physics_process(delta: float) -> void:
 func set_collision_orientation(collision_position :Vector2 = DEFAULT_COLLISION_POS) -> void :
 	collision_shape_2d.position.x = collision_position.x * direction.x
 
-
-func set_collision_shape(collision_position :Vector2 = DEFAULT_COLLISION_POS, collision_size :Vector2 = DEFAULT_COLLISION_SIZE) -> void :
+func set_collision_shape(collision_position :Vector2 = DEFAULT_COLLISION_POS, collision_radius :int = DEFAULT_COLLISION_RADIUS, collision_height :int = DEFAULT_COLLISION_HEIGHT):
 	collision_shape_2d.position = collision_position
-	collision_shape_2d.shape.size = collision_size
+	collision_shape_2d.shape.radius = collision_radius
+	collision_shape_2d.shape.height = collision_height
 	set_collision_orientation(collision_position)
 
 func move_player(delta:float) -> void :

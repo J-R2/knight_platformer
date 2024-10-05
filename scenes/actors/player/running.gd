@@ -1,9 +1,16 @@
 extends PlayerState
 
+## the collision shape's position when running
+const RUNNING_COLLISION_POS = Vector2(-2, -19)
+## the collision shape's size when running
+const RUNNING_COLLISION_RADIUS := 9
+const RUNNING_COLLISION_HEIGHT := 38
+
 
 func enter() -> void :
 	player.animation_player.play(RUNNING.to_lower())
-	player.set_collision_shape()
+	player.set_collision_shape(RUNNING_COLLISION_POS, RUNNING_COLLISION_RADIUS, RUNNING_COLLISION_HEIGHT)
+
 
 
 

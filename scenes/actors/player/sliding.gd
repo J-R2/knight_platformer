@@ -1,7 +1,11 @@
 extends PlayerState
 
-const SLIDING_COLLISION_SIZE = Vector2(24, 24)
-const SLIDING_COLLISION_POS = Vector2(1, -12)
+
+## the collision shape's position when sliding
+const SLIDING_COLLISION_POS = Vector2(-1, -14)
+## the collision shape's size when sliding
+const SLIDING_COLLISION_RADIUS := 10
+const SLIDING_COLLISION_HEIGHT := 28
 
 const SLIDING_SPEED = player.MAX_SPEED * 1.4
 const SLIDING_SPEED_SCALE = 1.3
@@ -14,7 +18,7 @@ func enter() -> void :
 	# play the animation and set the collision size
 	player.animation_player.play(SLIDING.to_lower())
 	player.animation_player.speed_scale = SLIDING_SPEED_SCALE
-	player.set_collision_shape(SLIDING_COLLISION_POS, SLIDING_COLLISION_SIZE)
+	player.set_collision_shape(SLIDING_COLLISION_POS, SLIDING_COLLISION_RADIUS, SLIDING_COLLISION_HEIGHT)
 	next_state = IDLE
 	max_slide_time = (player.animation_player.current_animation_length / SLIDING_SPEED_SCALE) + 0.05
 	slide_timer = 0.0

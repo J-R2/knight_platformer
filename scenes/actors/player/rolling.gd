@@ -1,9 +1,11 @@
 extends PlayerState
 
-## the collision shape's size when rolling
-const ROLLING_COLLISION_SIZE = Vector2(22, 27)
+
 ## the collision shape's position when rolling
-const ROLLING_COLLISION_POS = Vector2(-4, -13.5)
+const ROLLING_COLLISION_POS = Vector2(-1, -17)
+## the collision shape's size when rolling
+const ROLLING_COLLISION_RADIUS := 8
+const ROLLING_COLLISION_HEIGHT := 34
 
 const ROLLING_SPEED = player.MAX_SPEED * 1.7
 const ROLLING_SPEED_SCALE = 1.1
@@ -16,7 +18,7 @@ var roll_timer := 0.0
 func enter() -> void :
 	player.animation_player.play(ROLLING.to_lower())
 	player.animation_player.speed_scale = ROLLING_SPEED_SCALE
-	player.set_collision_shape(ROLLING_COLLISION_POS, ROLLING_COLLISION_SIZE)
+	player.set_collision_shape(ROLLING_COLLISION_POS, ROLLING_COLLISION_RADIUS, ROLLING_COLLISION_HEIGHT)
 	max_roll_time = (player.animation_player.current_animation_length / ROLLING_SPEED_SCALE)
 	roll_timer = 0.0
 
