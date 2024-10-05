@@ -28,8 +28,8 @@ func _wall_climb() -> void :
 	var climb_right_pos = player.global_position.x + (CLIMB_RIGHT_AMOUNT * player.direction.x)
 	tween.set_ease(Tween.EASE_OUT_IN)
 	tween.set_trans(Tween.TRANS_SINE)
-	tween.tween_property(player, "global_position:y", climb_up_pos, duration/2)
-	tween.tween_property(player, "global_position:x", climb_right_pos, duration/2)
+	tween.tween_property(player, "global_position:y", climb_up_pos, duration*.6)
+	tween.tween_property(player, "global_position:x", climb_right_pos, duration*.4)
 	
 
 func exit() -> void :
