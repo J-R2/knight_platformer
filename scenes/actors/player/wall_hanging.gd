@@ -11,4 +11,4 @@ func physics_update(delta:float) -> void :
 	if Input.is_action_just_pressed("crouch"):
 		finished.emit(FALLING)
 	if Input.is_action_just_pressed("jump"):
-		finished.emit(JUMPING)
+		finished.emit(WALL_CLIMBING)

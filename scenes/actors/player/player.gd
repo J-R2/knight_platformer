@@ -3,7 +3,7 @@ extends CharacterBody2D
 
 
 
-const MAX_SPEED := 175.0
+const MAX_SPEED := 150.0
 
 
 @export var speed := MAX_SPEED
