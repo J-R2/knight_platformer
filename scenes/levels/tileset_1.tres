@@ -3,10 +3,10 @@
 [ext_resource type="Texture2D" uid="uid://id3ppjt32vn4" path="res://scenes/levels/tilesets/medieval_castle/merged_tile_atlas.png" id="1_7xa5x"]
 [ext_resource type="Texture2D" uid="uid://cbo1po3va4l5u" path="res://scenes/levels/tilesets/medieval_castle/blank.png" id="2_6f8fp"]
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_ahy1s"]
-tile_data = PackedInt32Array(0, 13, 0, 65536, 196621, 0, 131072, 327693, 0, 196608, 327693, 0, 1, 65549, 0, 2, 131085, 0, 65538, 196621, 65536, 131074, 327693, 65536, 196610, 327693, 65536)
+[sub_resource type="TileMapPattern" id="TileMapPattern_ax8ha"]
+tile_data = PackedInt32Array(0, 13, 0, 65536, 196621, 0, 131072, 327693, 0, 1, 65549, 0, 2, 131085, 0, 65538, 196621, 65536, 131074, 327693, 65536)
 
-[sub_resource type="TileMapPattern" id="TileMapPattern_p564a"]
+[sub_resource type="TileMapPattern" id="TileMapPattern_fqam2"]
 tile_data = PackedInt32Array(0, 393229, 9, 65536, 589837, 9, 131072, 458765, 9)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ji7rx"]
@@ -282,5 +282,5 @@ terrain_set_0/terrain_0/name = "walls"
 terrain_set_0/terrain_0/color = Color(0.665107, 0.0844706, 0.46393, 1)
 sources/13 = SubResource("TileSetAtlasSource_ji7rx")
 sources/14 = SubResource("TileSetAtlasSource_3wpfd")
-pattern_0 = SubResource("TileMapPattern_ahy1s")
-pattern_1 = SubResource("TileMapPattern_p564a")
+pattern_0 = SubResource("TileMapPattern_ax8ha")
+pattern_1 = SubResource("TileMapPattern_fqam2")

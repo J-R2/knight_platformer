@@ -457,6 +457,9 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+floor_stop_on_slope = false
+floor_constant_speed = true
+floor_max_angle = 1.309
 script = ExtResource("1_jk7m2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -499,6 +502,7 @@ script = ExtResource("13_e2som")
 script = ExtResource("16_q67o4")
 
 [node name="StateLabel" type="Label" parent="."]
+visible = false
 offset_left = -35.0
 offset_top = -64.0
 offset_right = 25.0
