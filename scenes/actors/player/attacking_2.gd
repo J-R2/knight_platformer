@@ -2,7 +2,6 @@ extends PlayerState
 
 var state_duration :float = 1.0
 var state_timer :float = 0.0
-var next_state := IDLE
 
 
 func _ready() -> void:
@@ -13,20 +12,15 @@ func _ready() -> void:
 
 func enter() -> void :
 	player.attack_area_shape_2d.disabled = false
-	player.animation_player.play(ATTACKING.to_lower())
+	player.animation_player.play(ATTACKING_2.to_lower())
 	state_duration = player.animation_player.current_animation_length
-
-
-	
 
 
 
 func physics_update(delta:float) -> void :
 	state_timer += delta
-	if Input.is_action_just_pressed("attack"):
-		next_state = ATTACKING_2
 	if state_timer > state_duration:
-		finished.emit(next_state)
+		finished.emit(IDLE)
 
 
 func _on_attack_area_entered(area:Area2D):
@@ -34,6 +28,5 @@ func _on_attack_area_entered(area:Area2D):
 	player.attack_area_shape_2d.disabled = true
 
 func exit() -> void :
-	next_state = IDLE
 	player.attack_area_shape_2d.disabled = true
 	state_timer = 0.0

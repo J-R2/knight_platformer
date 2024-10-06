@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://berkqovuuonc"]
+[gd_scene load_steps=41 format=3 uid="uid://berkqovuuonc"]
 
 [ext_resource type="Texture2D" uid="uid://cipfdi50s1se0" path="res://scenes/actors/player/art/idle.png" id="1_8pm4j"]
 [ext_resource type="Script" path="res://scenes/actors/player/player.gd" id="1_jk7m2"]
@@ -17,11 +17,13 @@
 [ext_resource type="Texture2D" uid="uid://ef4psfp0p7p8" path="res://scenes/actors/player/art/wall_climb_nomovement.png" id="10_u2wmp"]
 [ext_resource type="Script" path="res://scenes/actors/player/sliding.gd" id="11_ccnj4"]
 [ext_resource type="Texture2D" uid="uid://byk6iyfnblpjq" path="res://scenes/actors/player/art/attack_nomovement.png" id="11_obdrm"]
+[ext_resource type="Texture2D" uid="uid://bkanyaw6sgwpk" path="res://scenes/actors/player/art/attack2_nomovement.png" id="12_44ugt"]
 [ext_resource type="Script" path="res://scenes/actors/player/crouching.gd" id="13_e2som"]
 [ext_resource type="Script" path="res://scenes/actors/player/rolling.gd" id="16_q67o4"]
 [ext_resource type="Script" path="res://scenes/actors/player/wall_hanging.gd" id="17_qlvfd"]
 [ext_resource type="Script" path="res://scenes/actors/player/wall_climbing.gd" id="20_ay7qk"]
 [ext_resource type="Script" path="res://scenes/actors/player/attacking.gd" id="21_ecrb6"]
+[ext_resource type="Script" path="res://scenes/actors/player/attacking_2.gd" id="23_a0vxj"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_274om"]
 radius = 8.0
@@ -83,6 +85,59 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_m1mrj"]
+resource_name = "attacking"
+length = 0.35
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("11_obdrm")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
 }
 
 [sub_resource type="Animation" id="Animation_hmo76"]
@@ -563,9 +618,9 @@ tracks/3/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_m1mrj"]
-resource_name = "attacking"
-length = 0.35
+[sub_resource type="Animation" id="Animation_ihr71"]
+resource_name = "attacking2"
+length = 0.4
 step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -577,7 +632,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("11_obdrm")]
+"values": [ExtResource("12_44ugt")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -589,7 +644,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [6]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -610,16 +665,17 @@ tracks/3/path = NodePath("Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.25),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [0, 1, 2, 3, 4, 5]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cpcee"]
 _data = {
 "RESET": SubResource("Animation_6j42w"),
 "attacking": SubResource("Animation_m1mrj"),
+"attacking2": SubResource("Animation_ihr71"),
 "crouching": SubResource("Animation_hmo76"),
 "falling": SubResource("Animation_h81fn"),
 "idle": SubResource("Animation_ttse1"),
@@ -705,6 +761,9 @@ script = ExtResource("20_ay7qk")
 
 [node name="Attacking" type="Node" parent="StateMachine"]
 script = ExtResource("21_ecrb6")
+
+[node name="Attacking2" type="Node" parent="StateMachine"]
+script = ExtResource("23_a0vxj")
 
 [node name="StateLabel" type="Label" parent="."]
 visible = false

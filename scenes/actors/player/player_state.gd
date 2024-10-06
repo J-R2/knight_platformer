@@ -13,6 +13,7 @@ const ROLLING := "Rolling"
 const WALL_HANGING := "WallHanging"
 const WALL_CLIMBING := "WallClimbing"
 const ATTACKING := "Attacking"
+const ATTACKING_2 := "Attacking2"
 
 ## a reference to the player
 var player :Player = null
