@@ -8,7 +8,7 @@ const RUNNING_COLLISION_HEIGHT := 38
 
 const RUNNING_SPEED_SCALE = 1.2
 
-const COYOTE_MAX_TIME :float = 0.5 ## currently used to continue running animation while going down stairs, can be 0 grav for coyote time maybe
+const COYOTE_MAX_TIME :float = 0.3 ## currently used to continue running animation while going down stairs, can be 0 grav for coyote time maybe
 var coyote_timer :float = 0.0
 
 
