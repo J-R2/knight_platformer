@@ -41,7 +41,6 @@ func physics_update(delta :float) -> void :
 func _on_wall_climb_area_entered(area :Area2D):
 	if area.is_in_group("wall_hanging_areas"):
 		finished.emit(WALL_HANGING)
-		print("test")
 
 
 func exit() -> void :

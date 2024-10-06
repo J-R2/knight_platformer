@@ -29,6 +29,8 @@ func physics_update(delta :float) -> void :
 		_reset_crouch_animation()
 	if Input.is_action_just_pressed("crouch") or Input.is_action_just_pressed("jump"):
 		finished.emit(IDLE)
+	if Input.is_action_just_pressed("roll"):
+		finished.emit(ROLLING)
 	
 
 func _reset_crouch_animation() -> void :

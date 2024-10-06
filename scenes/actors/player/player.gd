@@ -21,6 +21,9 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var wall_climb_detector: Area2D = $WallClimbDetector
 @onready var wall_climb_detector_shape_2d: CollisionShape2D = $WallClimbDetector/WallClimbDetectorShape2D
+@onready var attack_area_2d: Area2D = $AttackArea2D
+@onready var attack_area_shape_2d: CollisionShape2D = $AttackArea2D/AttackAreaShape2D
+
 
 
 
@@ -48,8 +51,10 @@ func set_collision_orientation(collision_position :Vector2 = DEFAULT_COLLISION_P
 	collision_shape_2d.position.x = collision_position.x * direction.x
 	if direction.x == -1:
 		wall_climb_detector_shape_2d.position.x = -2
+		attack_area_shape_2d.position.x = -26
 	else:
 		wall_climb_detector_shape_2d.position.x = 2
+		attack_area_shape_2d.position.x = 26
 
 
 func set_collision_shape(collision_position :Vector2 = DEFAULT_COLLISION_POS, collision_radius :int = DEFAULT_COLLISION_RADIUS, collision_height :int = DEFAULT_COLLISION_HEIGHT):
