@@ -1,0 +1,15 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://22vh32eewa1b"
+valid=false
+
+[deps]
+
+source_file="res://dialogue.csv"
+
+[params]
+
+compress=true
+delimiter=0
