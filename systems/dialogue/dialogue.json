@@ -1,0 +1,19 @@
+{
+	"actor_name": "percival",
+	"percival_dialogue_items": [
+		{
+			"message": "Hey you! Come over here!",
+			"message_index": 1,
+			"options": [
+				{
+					"goto_message_index": 2,
+					"option_text": "Okay, what do you want?"
+				},
+				{
+					"goto_message_index": 1,
+					"option_text": "No."
+				}
+			]
+		}
+	]
+}
