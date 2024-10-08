@@ -9,20 +9,44 @@ var dialogue_items :Array[DialogueItem] = []
 
 
 func _ready() -> void :
+	#if actor_name == "":
+		#printerr("actor_name for ", owner.name, " was not specified. Please do so in their ActorDialogueManager Node Inspector panel.")
 	_load()
-	#var dialogue_item = DialogueItem.new()
-	#dialogue_item.message = "Hey you! Come over here!"
-	#dialogue_item.message_index = 1
-	#dialogue_item.add_dialogue_option("Okay, what do you want?", 3)
-	#dialogue_item.add_dialogue_option("No.", 2)
-	#dialogue_items.append(dialogue_item)
-	#for item in dialogue_items:
-		#print(item.message)
-		#print(item.options)
-	#_save()
-	#pass
+
+
+
+## loads the dialogue_items array for the current actor
+func _load() -> void :
+	var file = FileAccess.open(DIALOGUE_FILE_PATH, FileAccess.READ)
+	var json_line :String = ""
+	while not file.eof_reached(): # the JSON is seperated by /n and /t, must combine lines and remove tabs
+		var line = file.get_line()
+		json_line += line.strip_edges()
+	file.close()
 	
+	var loaded_array_of_actors :Array[Dictionary] = [] # holds the array of all actors and their dialogue_items arrays
+	var temp_array_of_jsonified_actors = json_line.split("}]}]}") # separate the dialogue actors
+	for line in temp_array_of_jsonified_actors:
+		line += "}]}]}" # add the separated text to the end of the string
+		if line == "}]}]}": # ignore the final separation
+			continue
+		var parsed_json_dict = JSON.parse_string(line) # retrieve the data from the json string
+		loaded_array_of_actors.append(parsed_json_dict) # finally in a proper variable, an array of dictionaries, containing dictionaries with arrays of dictionaries
 	
+	for actor in loaded_array_of_actors: # go through all the actors in the array
+		if actor["actor_name"] == actor_name: # find this actor's dictionary
+			var save_actor_dialogue = actor_name.to_lower() + "_" + "dialogue_items"
+			for item in actor[save_actor_dialogue]: # go through this actor's saved dialogue_items and set the data
+				var dialogue_item = DialogueItem.new()
+				dialogue_item.message_index = item["message_index"]
+				dialogue_item.message = item["message"]
+				for option in item["options"]:
+					dialogue_item.options.append(option)
+				dialogue_items.append(dialogue_item)
+
+
+
+
 ## saves the dialogue in the proper format, no longer needed
 func _save() -> void :
 	var file = FileAccess.open(DIALOGUE_FILE_PATH, FileAccess.WRITE)
@@ -40,42 +64,9 @@ func _save() -> void :
 		save_dict[save_actor_dialogue].append(new_dict)
 	file.store_line(JSON.stringify(save_dict, "\t"))
 	file.close()
-	
 
-
-func _load() -> void :
-	var file = FileAccess.open(DIALOGUE_FILE_PATH, FileAccess.READ)
-	var json_line :String = ""
-	var loaded_array_of_actors :Array[Dictionary] = []
-	while not file.eof_reached():
-		var line = file.get_line()
-		json_line += line.replace("\t", "")
-
-	var temp_array = json_line.split("}]}]}")
-	for item in temp_array:
-		item += "}]}]}"
-		if item == "}]}]}":
-			continue
-		var parsed_json_dict = JSON.parse_string(item)
-		loaded_array_of_actors.append(parsed_json_dict)
-	
-	for actor in loaded_array_of_actors:
-		if actor["actor_name"] == actor_name:
-			var save_actor_dialogue = actor_name.to_lower() + "_" + "dialogue_items"
-			for item in actor[save_actor_dialogue]:
-				var dialogue_item = DialogueItem.new()
-				dialogue_item.message_index = item["message_index"]
-				dialogue_item.message = item["message"]
-				for option in item["options"]:
-					dialogue_item.options.append(option)
-				dialogue_items.append(dialogue_item)
-	for item in dialogue_items:
-		print(item.message_index, "  ", item.message)
-		print(item.options)
-	file.close()
-
-
-
+## A dialogue item, contains a main message with index, and options displayed for character input.
+## each option has a goto message index which will display the next message in the dialogue conversation until quit (-1)
 class DialogueItem:
 	const OPTION_TEXT = "option_text"
 	const GOTO_MESSAGE_INDEX = "goto_message_index"
