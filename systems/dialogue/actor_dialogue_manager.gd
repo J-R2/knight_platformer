@@ -9,7 +9,7 @@ var dialogue_items :Array[DialogueItem] = []
 
 
 func _ready() -> void :
-	#_load_dialogue_items()
+	_load()
 	#var dialogue_item = DialogueItem.new()
 	#dialogue_item.message = "Hey you! Come over here!"
 	#dialogue_item.message_index = 1
@@ -20,7 +20,7 @@ func _ready() -> void :
 		#print(item.message)
 		#print(item.options)
 	#_save()
-	pass
+	#pass
 	
 	
 ## saves the dialogue in the proper format, no longer needed
@@ -43,18 +43,35 @@ func _save() -> void :
 	
 
 
-func _load_dialogue_items() -> void :
-	if DIALOGUE_FILE_PATH == null:
-		push_error("The dialogue file for ", owner.name, " is not specified.")
-		return
+func _load() -> void :
 	var file = FileAccess.open(DIALOGUE_FILE_PATH, FileAccess.READ)
+	var json_line :String = ""
+	var loaded_array_of_actors :Array[Dictionary] = []
 	while not file.eof_reached():
-		var line_array = file.get_csv_line(";")
-		var dialogue_item = DialogueItem.new()
-		dialogue_item.message = line_array[0]
-		for index in range(1, line_array.size()):
-			dialogue_item.choices.append(line_array.duplicate()[index])
-		dialogue_items.append(dialogue_item)
+		var line = file.get_line()
+		json_line += line.replace("\t", "")
+
+	var temp_array = json_line.split("}]}]}")
+	for item in temp_array:
+		item += "}]}]}"
+		if item == "}]}]}":
+			continue
+		var parsed_json_dict = JSON.parse_string(item)
+		loaded_array_of_actors.append(parsed_json_dict)
+	
+	for actor in loaded_array_of_actors:
+		if actor["actor_name"] == actor_name:
+			var save_actor_dialogue = actor_name.to_lower() + "_" + "dialogue_items"
+			for item in actor[save_actor_dialogue]:
+				var dialogue_item = DialogueItem.new()
+				dialogue_item.message_index = item["message_index"]
+				dialogue_item.message = item["message"]
+				for option in item["options"]:
+					dialogue_item.options.append(option)
+				dialogue_items.append(dialogue_item)
+	for item in dialogue_items:
+		print(item.message_index, "  ", item.message)
+		print(item.options)
 	file.close()
 
 
@@ -62,8 +79,8 @@ func _load_dialogue_items() -> void :
 class DialogueItem:
 	const OPTION_TEXT = "option_text"
 	const GOTO_MESSAGE_INDEX = "goto_message_index"
-	var message :String = ""
 	var message_index :int = 0
+	var message :String = ""
 	var options :Array[Dictionary] = []
 	
 	func add_dialogue_option(new_option_text:String, new_goto_message_index:int = -1):
