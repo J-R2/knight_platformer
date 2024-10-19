@@ -1,6 +1,6 @@
 extends Node
 
-@export var actor_name :String = "percival"
+@export var conversation_title :String = "knight_and_percival_introduction"
 #@export_file("*.json") var
 const DIALOGUE_FILE_PATH :String = "res://systems/dialogue/dialogue.json"
 
@@ -9,13 +9,17 @@ var dialogue_items :Array[DialogueItem] = []
 
 
 func _ready() -> void :
-	#if actor_name == "":
-		#printerr("actor_name for ", owner.name, " was not specified. Please do so in their ActorDialogueManager Node Inspector panel.")
+	#if conversation_title == "":
+		#printerr("conversation_title for ", owner.name, " was not specified. Please do so in their DialogueManager Node Inspector panel.")
 	_load()
+	for item in dialogue_items:
+		print(item.message_index, ".  ", item.message)
+		for option in item.options:
+			print(option[item.OPTION_TEXT], " -> ", option[item.GOTO_MESSAGE_INDEX])
 
 
 
-## loads the dialogue_items array for the current actor
+## loads the dialogue_items array for the current conversation
 func _load() -> void :
 	var file = FileAccess.open(DIALOGUE_FILE_PATH, FileAccess.READ)
 	var json_line :String = ""
@@ -24,19 +28,19 @@ func _load() -> void :
 		json_line += line.strip_edges()
 	file.close()
 	
-	var loaded_array_of_actors :Array[Dictionary] = [] # holds the array of all actors and their dialogue_items arrays
-	var temp_array_of_jsonified_actors = json_line.split("}]}]}") # separate the dialogue actors
-	for line in temp_array_of_jsonified_actors:
+	var loaded_array_of_conversations :Array[Dictionary] = [] # holds the array of all conversations and their dialogue_items arrays
+	var temp_array_of_jsonified_conversations = json_line.split("}]}]}") # separate the dialogue conversations
+	for line in temp_array_of_jsonified_conversations:
 		line += "}]}]}" # add the separated text to the end of the string
 		if line == "}]}]}": # ignore the final separation
 			continue
 		var parsed_json_dict = JSON.parse_string(line) # retrieve the data from the json string
-		loaded_array_of_actors.append(parsed_json_dict) # finally in a proper variable, an array of dictionaries, containing dictionaries with arrays of dictionaries
+		loaded_array_of_conversations.append(parsed_json_dict) # finally in a proper variable, an array of dictionaries, containing dictionaries with arrays of dictionaries
 	
-	for actor in loaded_array_of_actors: # go through all the actors in the array
-		if actor["actor_name"] == actor_name: # find this actor's dictionary
-			var save_actor_dialogue = actor_name.to_lower() + "_" + "dialogue_items"
-			for item in actor[save_actor_dialogue]: # go through this actor's saved dialogue_items and set the data
+	for conversation in loaded_array_of_conversations: # go through all the conversations in the array
+		if conversation["conversation_title"] == conversation_title: # find this conversation's dictionary
+			var save_conversation_dialogue = conversation_title.to_lower() + "_" + "dialogue_items"
+			for item in conversation[save_conversation_dialogue]: # go through this conversation's saved dialogue_items and set the data
 				var dialogue_item = DialogueItem.new()
 				dialogue_item.message_index = item["message_index"]
 				dialogue_item.message = item["message"]
@@ -50,10 +54,10 @@ func _load() -> void :
 ## saves the dialogue in the proper format, no longer needed
 func _save() -> void :
 	var file = FileAccess.open(DIALOGUE_FILE_PATH, FileAccess.WRITE)
-	var save_actor_dialogue = actor_name.to_lower() + "_" + "dialogue_items"
+	var save_conversation_dialogue = conversation_title.to_lower() + "_" + "dialogue_items"
 	var save_dict = {
-		"actor_name" : actor_name.to_lower(),
-		save_actor_dialogue : []
+		"conversation_title" : conversation_title.to_lower(),
+		save_conversation_dialogue : []
 	}
 	for item in dialogue_items:
 		var new_dict = {
@@ -61,7 +65,7 @@ func _save() -> void :
 			"message" : item.message,
 			"options" : item.options,
 		}
-		save_dict[save_actor_dialogue].append(new_dict)
+		save_dict[save_conversation_dialogue].append(new_dict)
 	file.store_line(JSON.stringify(save_dict, "\t"))
 	file.close()
 

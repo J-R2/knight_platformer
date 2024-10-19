@@ -1,6 +1,6 @@
 {
-	"actor_name": "percival",
-	"percival_dialogue_items": [
+	"conversation_title": "knight_and_percival_introduction",
+	"knight_and_percival_introduction_dialogue_items": [
 		{
 			"message": "Hey you! Come over here!",
 			"message_index": 1,
@@ -18,8 +18,8 @@
 	]
 }
 {
-	"actor_name": "knight",
-	"knight_dialogue_items": [
+	"conversation_title": "test_2",
+	"test_2_dialogue_items": [
 		{
 			"message": "Why should I do that?",
 			"message_index": 1,
