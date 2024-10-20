@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://berkqovuuonc"]
+[gd_scene load_steps=42 format=3 uid="uid://berkqovuuonc"]
 
 [ext_resource type="Texture2D" uid="uid://cipfdi50s1se0" path="res://scenes/actors/player/art/idle.png" id="1_8pm4j"]
 [ext_resource type="Script" path="res://scenes/actors/player/player.gd" id="1_jk7m2"]
@@ -687,6 +687,9 @@ _data = {
 "wallhanging": SubResource("Animation_fj8v6")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccoug"]
+size = Vector2(42, 36)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 floor_stop_on_slope = false
@@ -773,3 +776,10 @@ offset_right = 25.0
 offset_bottom = -41.0
 text = "test"
 horizontal_alignment = 1
+
+[node name="InteractionArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_ccoug")
+debug_color = Color(0.366367, 0.595792, 0.450688, 0.42)

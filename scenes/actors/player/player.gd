@@ -23,8 +23,10 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 @onready var wall_climb_detector_shape_2d: CollisionShape2D = $WallClimbDetector/WallClimbDetectorShape2D
 @onready var attack_area_2d: Area2D = $AttackArea2D
 @onready var attack_area_shape_2d: CollisionShape2D = $AttackArea2D/AttackAreaShape2D
+@onready var interaction_area: Area2D = $InteractionArea
 
-
+var is_dialogue_interactable :bool = false
+var is_interactable :bool = false
 
 
 #================================================================================
@@ -35,6 +37,8 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 func _ready() -> void:
 	# set the collision shapes default values
 	set_collision_shape()
+	interaction_area.area_entered.connect(_on_interaction_area_entered)
+	interaction_area.area_exited.connect(_on_interaction_area_exited)
 
 
 
@@ -44,6 +48,19 @@ func _physics_process(delta: float) -> void:
 #================================================================================
 	state_label.text = get_node("StateMachine").current_state.name
 #================================================================================
+
+
+
+func _on_interaction_area_entered(area:Area2D) -> void :
+	is_interactable = true
+	if area is DialogueInteractionArea:
+		is_dialogue_interactable = true
+
+
+func _on_interaction_area_exited(area:Area2D) -> void :
+	is_interactable = false
+	if area is DialogueInteractionArea:
+		is_dialogue_interactable = false
 
 
 

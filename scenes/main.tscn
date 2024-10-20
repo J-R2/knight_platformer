@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://d26kyr3la0odx"]
+[gd_scene load_steps=5 format=3 uid="uid://d26kyr3la0odx"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_4lv1g"]
 [ext_resource type="PackedScene" uid="uid://berkqovuuonc" path="res://scenes/actors/player/player.tscn" id="1_lp82i"]
 [ext_resource type="PackedScene" uid="uid://21hupa01bhrp" path="res://scenes/levels/level_1/level_1_map.tscn" id="2_yflwl"]
-[ext_resource type="PackedScene" uid="uid://uwubb70vav56" path="res://systems/dialogue/dialogue_interaction_area.tscn" id="4_5uyje"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oe52c"]
 size = Vector2(2, 2)
@@ -35,6 +34,3 @@ position = Vector2(323, 164)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallHangArea2D3"]
 shape = SubResource("RectangleShape2D_oe52c")
-
-[node name="DialogueInteractionArea" parent="." instance=ExtResource("4_5uyje")]
-position = Vector2(192, 224)

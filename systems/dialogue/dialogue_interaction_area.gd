@@ -1,3 +1,4 @@
+class_name DialogueInteractionArea
 extends Area2D
 
 @onready var dialogue_display_system : DialogueDisplaySystem = $CanvasLayer/DialogueDisplaySystem

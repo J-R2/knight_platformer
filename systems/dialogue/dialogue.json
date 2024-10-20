@@ -2,16 +2,16 @@
 	"conversation_title": "knight_and_percival_introduction",
 	"knight_and_percival_introduction_dialogue_items": [
 		{
-			"message": "Hey you! Come over here!",
+			"message": "Hey you! Come over here! Finally, took you long enough.",
 			"message_index": 1,
 			"options": [
 				{
 					"goto_message_index": 2,
-					"option_text": "Okay, what do you want? This is a very long option text for testing purposes."
+					"option_text": "I'm here, now tell me what you want?"
 				},
 				{
-					"goto_message_index": 1,
-					"option_text": "No."
+					"goto_message_index": 3,
+					"option_text": "Don't bother explaining, I'm leaving."
 				}
 			]
 		},
@@ -20,8 +20,26 @@
 			"message_index": 2,
 			"options": [
 				{
-					"goto_message_index": -1,
-					"option_text": "Sure, I'll see what I can do."
+					"goto_message_index": 4,
+					"option_text": "How did you get there?"
+				},
+				{
+					"goto_message_index": 3,
+					"option_text": "Why should I help you?"
+				},
+				{
+					"goto_message_index": 5,
+					"option_text": "Okay, I'll see what I can do."
+				}
+			]
+		},
+		{
+			"message": "Please, I have to get out of here.",
+			"message_index": 3,
+			"options": [
+				{
+					"goto_message_index": 5,
+					"option_text": "Okay, I'll help you."
 				},
 				{
 					"goto_message_index": 3,
@@ -30,11 +48,11 @@
 			]
 		},
 		{
-			"message": "Please, I've been framed! They are planning on executing me at dawn. I have to get out of here.",
-			"message_index": 3,
+			"message": "I was working my way behind the wall through that hole next to you.  I wanted to get around the trap above this room, but the wall caved in behind me.  Now I'm trapped in here.",
+			"message_index": 4,
 			"options": [
 				{
-					"goto_message_index": -1,
+					"goto_message_index": 5,
 					"option_text": "Okay, I'll help you."
 				},
 				{
@@ -42,7 +60,22 @@
 					"option_text": "Never!"
 				}
 			]
+		},
+		{
+			"message": "Look for the key to this door, it has to be somewhere nearby.",
+			"message_index": 5,
+			"options": [
+				{
+					"goto_message_index": -1,
+					"option_text": "Understood."
+				},
+				{
+					"goto_message_index": 3,
+					"option_text": "Never!"
+				}
+			]
 		}
+		
 	]
 }
 {

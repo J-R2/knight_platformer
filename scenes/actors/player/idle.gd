@@ -3,7 +3,6 @@ extends PlayerState
 
 var collision := Vector2.ZERO
 var touching_wall :bool = false
-var touch_count = 0
 
 func enter() -> void:
 	# play the idle animation and set the collision size/orientation
