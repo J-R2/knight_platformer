@@ -117,6 +117,7 @@ grow_vertical = 2
 custom_minimum_size = Vector2(235, 0)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_bottom = NodePath("../Button2")
 text = "This is a long text option button.  Try to
 click me."
 autowrap_mode = 3
@@ -125,6 +126,8 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(235, 0)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Button")
+focus_neighbor_bottom = NodePath("../Button3")
 text = "This is a long text option button.  Try to
 click me."
 autowrap_mode = 3
@@ -133,6 +136,7 @@ autowrap_mode = 3
 custom_minimum_size = Vector2(235, 0)
 layout_mode = 2
 size_flags_vertical = 3
+focus_neighbor_top = NodePath("../Button2")
 text = "This is a long text option button.  Try to
 click me."
 autowrap_mode = 3

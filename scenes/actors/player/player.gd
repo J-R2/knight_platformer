@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 
 const MAX_SPEED := 150.0
-
+const DIALOGUE_ICON = preload("res://scenes/actors/player/art/icons/talk.png")
 
 @export var speed := MAX_SPEED
 const GRAVITY := 900.0 ## the gravity
@@ -24,6 +24,8 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 @onready var attack_area_2d: Area2D = $AttackArea2D
 @onready var attack_area_shape_2d: CollisionShape2D = $AttackArea2D/AttackAreaShape2D
 @onready var interaction_area: Area2D = $InteractionArea
+@onready var icon: Sprite2D = $Icon
+
 
 var is_dialogue_interactable :bool = false
 var is_interactable :bool = false
@@ -37,6 +39,7 @@ var is_interactable :bool = false
 func _ready() -> void:
 	# set the collision shapes default values
 	set_collision_shape()
+	icon.hide()
 	interaction_area.area_entered.connect(_on_interaction_area_entered)
 	interaction_area.area_exited.connect(_on_interaction_area_exited)
 
@@ -54,11 +57,13 @@ func _physics_process(delta: float) -> void:
 func _on_interaction_area_entered(area:Area2D) -> void :
 	is_interactable = true
 	if area is DialogueInteractionArea:
+		icon.texture = DIALOGUE_ICON
+		icon.show()
 		is_dialogue_interactable = true
-
 
 func _on_interaction_area_exited(area:Area2D) -> void :
 	is_interactable = false
+	icon.hide()
 	if area is DialogueInteractionArea:
 		is_dialogue_interactable = false
 

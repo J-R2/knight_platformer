@@ -19,3 +19,5 @@
 
 
 [UI SFX](https://opengameart.org/content/menu-selection-click) by [NenadSimic](https://opengameart.org/users/nenadsimic)
+
+[Dialogue Icon](https://game-icons.net/1x1/skoll/talk.html#download) by [Skoll](https://game-icons.net/about.html#authors)

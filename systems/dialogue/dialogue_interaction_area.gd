@@ -12,7 +12,7 @@ const DIALOGUE_FILE_PATH :String = "res://systems/dialogue/dialogue.json"
 var dialogue_items :Array[DialogueItem] = []
 var current_dialogue_index = 0
 
-
+var _interaction_enabled := true
 
 
 
@@ -21,22 +21,43 @@ var current_dialogue_index = 0
 
 
 func _ready() -> void :
+	self.process_mode = Node.PROCESS_MODE_ALWAYS
 	#if conversation_title == "":
 		#printerr("conversation_title for ", owner.name, " was not specified. Please do so in their DialogueManager Node Inspector panel.")
 	_load()
-	dialogue_display_system.display_messsage(dialogue_items[0])
 	dialogue_display_system.option_chosen.connect(_on_option_chosen)
+	dialogue_display_system.hide()
+
+	
+	
 	#for item in dialogue_items:
 		#print(item.message_index, ".  ", item.message)
 		#for option in item.options:
 			#print(option[item.OPTION_TEXT], " -> ", option[item.GOTO_MESSAGE_INDEX])
 
 
+func _input(event: InputEvent) -> void:
+	var is_interaction_request = (
+		(event is InputEventKey or event is InputEventJoypadButton) and 
+		event.is_pressed() and
+		event.is_action("interact") and 
+		self.has_overlapping_bodies() and
+		_interaction_enabled
+	)
+	if is_interaction_request:
+		_interaction_enabled = false
+		dialogue_display_system.show()
+		dialogue_display_system.display_message(dialogue_items[0])
+		get_tree().paused = true
+		
+
+
 func _on_option_chosen(goto_message_index_result:int) -> void :
 	if goto_message_index_result == -1:
+		get_tree().paused = false
 		self.queue_free()
 		return
-	dialogue_display_system.display_messsage(dialogue_items[goto_message_index_result-1])
+	dialogue_display_system.display_message(dialogue_items[goto_message_index_result-1])
 
 
 ## loads the dialogue_items array for the current conversation

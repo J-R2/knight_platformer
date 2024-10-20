@@ -12,7 +12,7 @@ func _ready() -> void:
 	pass
 
 
-func display_messsage(dialogue_item :DialogueItem) -> void:
+func display_message(dialogue_item :DialogueItem) -> void:
 	for child in options_container.get_children():
 		if child is Button: child.queue_free()
 	message_label.text = dialogue_item.message
@@ -23,7 +23,14 @@ func display_messsage(dialogue_item :DialogueItem) -> void:
 	await message_tween.finished
 	for option in dialogue_item.options:
 		create_button(option)
+	_set_button_focus()
 	await option_chosen
+
+
+func _set_button_focus() -> void :
+	var buttons = options_container.get_children()
+	if buttons:
+		buttons[0].grab_focus()
 
 
 func create_button(option :Dictionary) -> void:

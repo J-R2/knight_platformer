@@ -1,8 +1,9 @@
-[gd_scene load_steps=42 format=3 uid="uid://berkqovuuonc"]
+[gd_scene load_steps=43 format=3 uid="uid://berkqovuuonc"]
 
 [ext_resource type="Texture2D" uid="uid://cipfdi50s1se0" path="res://scenes/actors/player/art/idle.png" id="1_8pm4j"]
 [ext_resource type="Script" path="res://scenes/actors/player/player.gd" id="1_jk7m2"]
 [ext_resource type="Texture2D" uid="uid://r5hnt133ihwh" path="res://scenes/actors/player/art/run.png" id="2_laaoi"]
+[ext_resource type="Texture2D" uid="uid://du5nt1yytyjhu" path="res://scenes/actors/player/art/icons/talk.png" id="3_cuy4e"]
 [ext_resource type="Texture2D" uid="uid://6637fj1isdxx" path="res://scenes/actors/player/art/jump.png" id="3_yt4yq"]
 [ext_resource type="Script" path="res://scripts/state/state_machine.gd" id="4_r7o07"]
 [ext_resource type="Texture2D" uid="uid://dmx4odm6vbege" path="res://scenes/actors/player/art/fall.png" id="5_vlijv"]
@@ -701,6 +702,11 @@ script = ExtResource("1_jk7m2")
 position = Vector2(0, -40)
 texture = ExtResource("1_8pm4j")
 hframes = 10
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(0, -48)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("3_cuy4e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, -19)
