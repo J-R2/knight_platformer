@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://uwubb70vav56"]
+
+[ext_resource type="Script" path="res://systems/dialogue/dialogue_interaction_area.gd" id="1_2u0mp"]
+[ext_resource type="PackedScene" uid="uid://due6sriency27" path="res://systems/dialogue/dialogue_display_system.tscn" id="2_xli8m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wucco"]
+size = Vector2(62, 48)
+
+[node name="DialogueInteractionArea" type="Area2D"]
+script = ExtResource("1_2u0mp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wucco")
+debug_color = Color(0.333393, 0.607455, 0.395649, 0.42)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueDisplaySystem" parent="CanvasLayer" instance=ExtResource("2_xli8m")]

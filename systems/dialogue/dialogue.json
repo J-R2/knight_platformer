@@ -7,11 +7,39 @@
 			"options": [
 				{
 					"goto_message_index": 2,
-					"option_text": "Okay, what do you want?"
+					"option_text": "Okay, what do you want? This is a very long option text for testing purposes."
 				},
 				{
 					"goto_message_index": 1,
 					"option_text": "No."
+				}
+			]
+		},
+		{
+			"message": "I need your help. I'm trapped in here with no way out.",
+			"message_index": 2,
+			"options": [
+				{
+					"goto_message_index": -1,
+					"option_text": "Sure, I'll see what I can do."
+				},
+				{
+					"goto_message_index": 3,
+					"option_text": "Never!"
+				}
+			]
+		},
+		{
+			"message": "Please, I've been framed! They are planning on executing me at dawn. I have to get out of here.",
+			"message_index": 3,
+			"options": [
+				{
+					"goto_message_index": -1,
+					"option_text": "Okay, I'll help you."
+				},
+				{
+					"goto_message_index": 3,
+					"option_text": "Never!"
 				}
 			]
 		}
