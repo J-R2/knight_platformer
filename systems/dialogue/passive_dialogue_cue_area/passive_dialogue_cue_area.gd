@@ -16,6 +16,7 @@ extends Area2D
 
 # Set the label text to the message, default hide the bubble sprite, and connect the signal to activate.
 func _ready() -> void:
+	show()
 	label.text = message
 	dialogue_bubble.hide()
 	self.body_entered.connect(_on_body_entered)
