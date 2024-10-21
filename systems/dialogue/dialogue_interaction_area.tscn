@@ -17,3 +17,4 @@ debug_color = Color(0.333393, 0.607455, 0.395649, 0.42)
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="DialogueDisplaySystem" parent="CanvasLayer" instance=ExtResource("2_xli8m")]
+visible = false

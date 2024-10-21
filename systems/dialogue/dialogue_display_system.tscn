@@ -1,57 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://due6sriency27"]
+[gd_scene load_steps=5 format=3 uid="uid://due6sriency27"]
 
 [ext_resource type="Texture2D" uid="uid://cbe6r6u3fbk7x" path="res://systems/dialogue/assets/dialogue_box.png" id="1_0jl8m"]
-[ext_resource type="FontFile" uid="uid://cq6j4crfcelqv" path="res://systems/dialogue/assets/morris-roman.black.ttf" id="1_u4gli"]
+[ext_resource type="Theme" uid="uid://d0nh3med3w2sl" path="res://systems/main_theme.tres" id="1_fcbj2"]
 [ext_resource type="Script" path="res://systems/dialogue/dialogue_display_system.gd" id="2_vbkl6"]
 [ext_resource type="AudioStream" uid="uid://caxuberr1ab16" path="res://systems/dialogue/assets/menu_selection_click.wav" id="4_vhryy"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b754k"]
-content_margin_top = 5.0
-content_margin_bottom = 3.0
-bg_color = Color(0, 0, 0, 0.588235)
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.988235, 0.760784, 0, 0.901961)
-corner_radius_top_left = 4
-corner_radius_top_right = 5
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ren6"]
-content_margin_top = 5.0
-content_margin_bottom = 3.0
-bg_color = Color(0, 0, 0, 0.588235)
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-corner_radius_top_left = 4
-corner_radius_top_right = 5
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 5
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sum88"]
-content_margin_top = 5.0
-content_margin_bottom = 3.0
-bg_color = Color(0, 0, 0, 0.588235)
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 4
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 4
-
-[sub_resource type="Theme" id="Theme_tn8fn"]
-Button/colors/font_color = Color(1, 1, 1, 1)
-Button/font_sizes/font_size = 14
-Button/fonts/font = ExtResource("1_u4gli")
-Button/styles/focus = SubResource("StyleBoxFlat_b754k")
-Button/styles/hover = SubResource("StyleBoxFlat_7ren6")
-Button/styles/normal = SubResource("StyleBoxFlat_sum88")
-Button/styles/pressed = SubResource("StyleBoxFlat_b754k")
-RichTextLabel/font_sizes/normal_font_size = 14
-RichTextLabel/fonts/normal_font = ExtResource("1_u4gli")
 
 [node name="DialogueDisplaySystem" type="Control"]
 layout_mode = 3
@@ -60,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = SubResource("Theme_tn8fn")
+theme = ExtResource("1_fcbj2")
 script = ExtResource("2_vbkl6")
 
 [node name="TextureRect" type="TextureRect" parent="."]

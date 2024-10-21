@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://d26kyr3la0odx"]
+[gd_scene load_steps=7 format=3 uid="uid://d26kyr3la0odx"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_4lv1g"]
 [ext_resource type="PackedScene" uid="uid://berkqovuuonc" path="res://scenes/actors/player/player.tscn" id="1_lp82i"]
 [ext_resource type="PackedScene" uid="uid://21hupa01bhrp" path="res://scenes/levels/level_1/level_1_map.tscn" id="2_yflwl"]
 [ext_resource type="PackedScene" uid="uid://uwubb70vav56" path="res://systems/dialogue/dialogue_interaction_area.tscn" id="4_w8oji"]
+[ext_resource type="PackedScene" uid="uid://ckw65fegngx32" path="res://systems/dialogue/passive_dialogue_cue_area/passive_dialogue_cue_area.tscn" id="5_eicyn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oe52c"]
 size = Vector2(2, 2)
@@ -41,3 +42,9 @@ debug_color = Color(0.721569, 0.294118, 0.933333, 0.419608)
 
 [node name="DialogueInteractionArea" parent="." instance=ExtResource("4_w8oji")]
 position = Vector2(414, 326)
+
+[node name="PassiveDialogueCueArea" parent="." instance=ExtResource("5_eicyn")]
+position = Vector2(231, 170)
+message = "Over here!"
+dialogue_bubble_position = 3
+show_timer_length = 1.0
