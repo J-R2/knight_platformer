@@ -704,6 +704,7 @@ texture = ExtResource("1_8pm4j")
 hframes = 10
 
 [node name="Icon" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -48)
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("3_cuy4e")

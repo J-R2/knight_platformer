@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://ckw65fegngx32"]
+[gd_scene load_steps=6 format=3 uid="uid://ckw65fegngx32"]
 
 [ext_resource type="Script" path="res://systems/dialogue/passive_dialogue_cue_area/passive_dialogue_cue_area.gd" id="1_g1nm5"]
-[ext_resource type="Theme" uid="uid://d0nh3med3w2sl" path="res://systems/main_theme.tres" id="1_jha48"]
 [ext_resource type="Texture2D" uid="uid://bgy7mhths5l3o" path="res://systems/dialogue/passive_dialogue_cue_area/dialogue_bubble.png" id="1_jmavj"]
+[ext_resource type="FontFile" uid="uid://cq6j4crfcelqv" path="res://systems/dialogue/assets/morris-roman.black.ttf" id="3_s10kf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ug4p8"]
-size = Vector2(20, 176)
+size = Vector2(6, 352)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iqcnm"]
+size = Vector2(646, 6)
 
 [node name="PassiveDialogueCueArea" type="Area2D"]
 collision_mask = 2
@@ -13,31 +16,42 @@ monitorable = false
 script = ExtResource("1_g1nm5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 176)
 shape = SubResource("RectangleShape2D_ug4p8")
 debug_color = Color(0.333333, 0.607843, 0.396078, 0.419608)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(640, 176)
+shape = SubResource("RectangleShape2D_ug4p8")
+debug_color = Color(0.333333, 0.607843, 0.396078, 0.419608)
 
-[node name="Control" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("1_jha48")
-metadata/_edit_use_anchors_ = true
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(320, 0)
+shape = SubResource("RectangleShape2D_iqcnm")
+debug_color = Color(0.333333, 0.607843, 0.396078, 0.419608)
 
-[node name="DialogueBubbleSprite" type="Sprite2D" parent="CanvasLayer/Control"]
-position = Vector2(302, 179)
-scale = Vector2(1.25, 1.25)
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(320, 352)
+shape = SubResource("RectangleShape2D_iqcnm")
+debug_color = Color(0.333333, 0.607843, 0.396078, 0.419608)
+
+[node name="DialogueBubble" type="Sprite2D" parent="."]
+position = Vector2(320, 176)
 texture = ExtResource("1_jmavj")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Control/DialogueBubbleSprite"]
-offset_left = -31.2
-offset_top = -11.2
-offset_right = 30.8
-offset_bottom = 3.8
-theme = ExtResource("1_jha48")
-bbcode_enabled = true
-text = "[center]Testing"
+[node name="Label" type="Label" parent="DialogueBubble"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -45.0
+offset_right = -31.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_s10kf")
+theme_override_font_sizes/font_size = 14
+text = "Testing"
+horizontal_alignment = 1

@@ -44,7 +44,6 @@ debug_color = Color(0.721569, 0.294118, 0.933333, 0.419608)
 position = Vector2(414, 326)
 
 [node name="PassiveDialogueCueArea" parent="." instance=ExtResource("5_eicyn")]
-position = Vector2(231, 170)
+position = Vector2(202, 123)
 message = "Over here!"
-dialogue_bubble_position = 3
-show_timer_length = 1.0
+show_timer_length = 2.2
