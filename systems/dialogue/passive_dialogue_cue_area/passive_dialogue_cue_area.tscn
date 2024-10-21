@@ -11,6 +11,7 @@ size = Vector2(6, 352)
 size = Vector2(646, 6)
 
 [node name="PassiveDialogueCueArea" type="Area2D"]
+collision_layer = 16
 collision_mask = 2
 monitorable = false
 script = ExtResource("1_g1nm5")

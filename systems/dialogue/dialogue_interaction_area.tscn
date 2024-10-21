@@ -7,6 +7,7 @@
 size = Vector2(62, 48)
 
 [node name="DialogueInteractionArea" type="Area2D"]
+collision_layer = 16
 collision_mask = 2
 script = ExtResource("1_2u0mp")
 

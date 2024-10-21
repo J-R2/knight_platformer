@@ -41,7 +41,7 @@ shape = SubResource("RectangleShape2D_oe52c")
 debug_color = Color(0.721569, 0.294118, 0.933333, 0.419608)
 
 [node name="DialogueInteractionArea" parent="." instance=ExtResource("4_w8oji")]
-position = Vector2(414, 326)
+position = Vector2(221, 196)
 
 [node name="PassiveDialogueCueArea" parent="." instance=ExtResource("5_eicyn")]
 position = Vector2(202, 123)

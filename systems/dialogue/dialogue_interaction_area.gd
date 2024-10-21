@@ -25,7 +25,7 @@ func _input(event: InputEvent) -> void:
 		(event is InputEventKey or event is InputEventJoypadButton) and 
 		event.is_pressed() and
 		event.is_action("interact") and 
-		self.has_overlapping_bodies() and
+		self.has_overlapping_areas() and
 		_interaction_enabled
 	)
 	if is_interaction_request:
