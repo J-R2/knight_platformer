@@ -1,41 +1,25 @@
 class_name DialogueInteractionArea
 extends Area2D
 
-@onready var dialogue_display_system : DialogueDisplaySystem = $CanvasLayer/DialogueDisplaySystem
-
+const DIALOGUE_FILE_PATH :String = "res://systems/dialogue/dialogue.json"
 
 ## The conversation title, used to determine which set of dialogue_items to display from dialogue.json
 @export var conversation_title :String = "knight_and_percival_introduction"
-#@export_file("*.json") var
-const DIALOGUE_FILE_PATH :String = "res://systems/dialogue/dialogue.json"
 
-var dialogue_items :Array[DialogueItem] = []
-var current_dialogue_index = 0
+@onready var dialogue_display_system : DialogueDisplaySystem = $CanvasLayer/DialogueDisplaySystem
 
-var _interaction_enabled := true
-
-
-
-
-
+var dialogue_items :Array[DialogueItem] = [] ## Holds all the DialogueItems for a given conversation_title
+var _interaction_enabled := true ## Dialogue conversations occur 1x.  Disabled on first player interaction until queue_free()
 
 
 func _ready() -> void :
-	self.process_mode = Node.PROCESS_MODE_ALWAYS
-	#if conversation_title == "":
-		#printerr("conversation_title for ", owner.name, " was not specified. Please do so in their DialogueManager Node Inspector panel.")
-	_load()
+	self.process_mode = Node.PROCESS_MODE_ALWAYS # Pause the game during conversations. Don't pause this script.
+	_load() # load the current conversation into the dialogue_items array
 	dialogue_display_system.option_chosen.connect(_on_option_chosen)
 	dialogue_display_system.hide()
 
-	
-	
-	#for item in dialogue_items:
-		#print(item.message_index, ".  ", item.message)
-		#for option in item.options:
-			#print(option[item.OPTION_TEXT], " -> ", option[item.GOTO_MESSAGE_INDEX])
 
-
+## Activate the dialogue UI if the player is in the area and interacts with it.
 func _input(event: InputEvent) -> void:
 	var is_interaction_request = (
 		(event is InputEventKey or event is InputEventJoypadButton) and 
@@ -45,13 +29,14 @@ func _input(event: InputEvent) -> void:
 		_interaction_enabled
 	)
 	if is_interaction_request:
+		# Disable the interaction_enabled, show the dialogue's first conversation item and pause the game.
 		_interaction_enabled = false
 		dialogue_display_system.show()
 		dialogue_display_system.display_message(dialogue_items[0])
 		get_tree().paused = true
 		
 
-
+## Continue the conversation or unpause the game if the -1 (end conversation) option is chosen.
 func _on_option_chosen(goto_message_index_result:int) -> void :
 	if goto_message_index_result == -1:
 		get_tree().paused = false
@@ -60,7 +45,7 @@ func _on_option_chosen(goto_message_index_result:int) -> void :
 	dialogue_display_system.display_message(dialogue_items[goto_message_index_result-1])
 
 
-## loads the dialogue_items array for the current conversation
+## Loads the dialogue_items array for the current conversation
 func _load() -> void :
 	var file = FileAccess.open(DIALOGUE_FILE_PATH, FileAccess.READ)
 	var json_line :String = ""

@@ -5,10 +5,13 @@ extends Object
 
 const OPTION_TEXT = "option_text"
 const GOTO_MESSAGE_INDEX = "goto_message_index"
+
 var message_index :int = 0
 var message :String = ""
 var options :Array[Dictionary] = []
 
+
+## Deprecated, once used to save the dialogue.json in the proper format quickly
 func add_dialogue_option(new_option_text:String, new_goto_message_index:int = -1):
 	if new_goto_message_index > 0: new_goto_message_index -= 1
 	var dialogue_option = {

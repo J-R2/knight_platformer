@@ -1,8 +1,8 @@
 extends PlayerState
 
-var state_duration :float = 1.0
-var state_timer :float = 0.0
-var next_state := IDLE
+var state_duration :float = 1.0 # RESET ON _READY(), after setting animation, get the length of the attack animation.
+var state_timer :float = 0.0 # Counts up by delta, until reaches state_duration, then transition to next state
+var next_state := IDLE # default next state to IDLE
 
 
 func _ready() -> void:
@@ -17,10 +17,6 @@ func enter() -> void :
 	state_duration = player.animation_player.current_animation_length
 
 
-	
-
-
-
 func physics_update(delta:float) -> void :
 	state_timer += delta
 	if Input.is_action_just_pressed("attack"):
@@ -32,6 +28,7 @@ func physics_update(delta:float) -> void :
 func _on_attack_area_entered(area:Area2D):
 	print("Attacking:  ", area.name)
 	player.attack_area_shape_2d.disabled = true
+
 
 func exit() -> void :
 	next_state = IDLE
