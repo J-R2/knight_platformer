@@ -23,18 +23,21 @@ position = Vector2(419, 68)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallHangArea2D"]
 shape = SubResource("RectangleShape2D_oe52c")
+debug_color = Color(0.721569, 0.294118, 0.933333, 0.419608)
 
 [node name="WallHangArea2D2" type="Area2D" parent="." groups=["wall_hanging_areas"]]
 position = Vector2(448, 68)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallHangArea2D2"]
 shape = SubResource("RectangleShape2D_oe52c")
+debug_color = Color(0.721569, 0.294118, 0.933333, 0.419608)
 
 [node name="WallHangArea2D3" type="Area2D" parent="." groups=["wall_hanging_areas"]]
 position = Vector2(323, 164)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="WallHangArea2D3"]
 shape = SubResource("RectangleShape2D_oe52c")
+debug_color = Color(0.721569, 0.294118, 0.933333, 0.419608)
 
 [node name="DialogueInteractionArea" parent="." instance=ExtResource("4_w8oji")]
 position = Vector2(414, 326)
