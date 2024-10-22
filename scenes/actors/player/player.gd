@@ -2,14 +2,22 @@ class_name Player
 extends CharacterBody2D
 
 signal health_changed(new_health)
+signal stamina_changed(new_stamina)
 
 const MAX_HEALTH = 100.0
+const MAX_STAMINA = 100.0
 var health = MAX_HEALTH :
 	set(value) :
 		health = clampf(value, 0, MAX_HEALTH)
 		health_changed.emit(health)
 	get:
 		return health
+var stamina = MAX_STAMINA :
+	set(value) :
+		stamina = clampf(value, 0, MAX_STAMINA)
+		stamina_changed.emit(stamina)
+	get:
+		return stamina
 
 const MAX_SPEED := 150.0
 const DIALOGUE_ICON = preload("res://scenes/actors/player/art/icons/talk.png")
@@ -33,6 +41,9 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 @onready var attack_area_shape_2d: CollisionShape2D = $AttackArea2D/AttackAreaShape2D
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var icon: Sprite2D = $Icon
+@onready var player_status_bar: Control = $StatusBarCanvasLayer/PlayerStatusBar
+
+
 
 
 var is_dialogue_interactable :bool = false
@@ -60,7 +71,8 @@ func _physics_process(delta: float) -> void:
 #================================================================================
 	state_label.text = get_node("StateMachine").current_state.name
 #================================================================================
-
+	if Input.is_action_just_pressed("use_item"):
+		health = MAX_HEALTH
 
 
 
@@ -74,12 +86,15 @@ func _on_interaction_area_entered(area:Area2D) -> void :
 		icon.texture = DIALOGUE_ICON
 		icon.show()
 		is_dialogue_interactable = true
+		player_status_bar.fade_out()
+
 
 func _on_interaction_area_exited(area:Area2D) -> void :
 	is_interactable = false
 	icon.hide()
 	if area is DialogueInteractionArea:
 		is_dialogue_interactable = false
+		player_status_bar.fade_in()
 
 
 
