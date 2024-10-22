@@ -11,7 +11,7 @@ var previous_state :String = ""
 func _ready() -> void:
 	await owner.ready
 	if initial_state == null:
-		initial_state == get_child(0)
+		initial_state = get_child(0)
 	current_state = initial_state
 	for state_node : State in find_children("*", "State"):
 		state_node.finished.connect(_on_state_finished)

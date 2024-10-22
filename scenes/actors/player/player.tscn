@@ -37,6 +37,9 @@ size = Vector2(31, 39)
 radius = 0.802845
 height = 1.75764
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccoug"]
+size = Vector2(42, 36)
+
 [sub_resource type="Animation" id="Animation_6j42w"]
 length = 0.001
 tracks/0/type = "value"
@@ -688,55 +691,12 @@ _data = {
 "wallhanging": SubResource("Animation_fj8v6")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ccoug"]
-size = Vector2(42, 36)
-
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 floor_stop_on_slope = false
 floor_constant_speed = true
 floor_max_angle = 1.309
 script = ExtResource("1_jk7m2")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -40)
-texture = ExtResource("1_8pm4j")
-hframes = 10
-
-[node name="Icon" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, -48)
-scale = Vector2(0.04, 0.04)
-texture = ExtResource("3_cuy4e")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5, -19)
-shape = SubResource("CapsuleShape2D_274om")
-
-[node name="AttackArea2D" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 36
-
-[node name="AttackAreaShape2D" type="CollisionShape2D" parent="AttackArea2D"]
-position = Vector2(26, -20)
-shape = SubResource("RectangleShape2D_eyyaq")
-disabled = true
-debug_color = Color(0.952413, 0.206507, 0.192456, 0.42)
-
-[node name="WallClimbDetector" type="Area2D" parent="."]
-collision_layer = 2
-
-[node name="WallClimbDetectorShape2D" type="CollisionShape2D" parent="WallClimbDetector"]
-position = Vector2(2, -32)
-scale = Vector2(1.24557, 1.13789)
-shape = SubResource("CapsuleShape2D_7uuln")
-disabled = true
-debug_color = Color(0.722517, 0.293774, 0.934469, 0.42)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_cpcee")
-}
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("4_r7o07")
@@ -775,14 +735,40 @@ script = ExtResource("21_ecrb6")
 [node name="Attacking2" type="Node" parent="StateMachine"]
 script = ExtResource("23_a0vxj")
 
-[node name="StateLabel" type="Label" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -40)
+texture = ExtResource("1_8pm4j")
+hframes = 10
+
+[node name="Icon" type="Sprite2D" parent="."]
 visible = false
-offset_left = -35.0
-offset_top = -64.0
-offset_right = 25.0
-offset_bottom = -41.0
-text = "test"
-horizontal_alignment = 1
+position = Vector2(0, -48)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("3_cuy4e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-5, -19)
+shape = SubResource("CapsuleShape2D_274om")
+
+[node name="AttackArea2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 36
+
+[node name="AttackAreaShape2D" type="CollisionShape2D" parent="AttackArea2D"]
+position = Vector2(26, -20)
+shape = SubResource("RectangleShape2D_eyyaq")
+disabled = true
+debug_color = Color(0.952413, 0.206507, 0.192456, 0.42)
+
+[node name="WallClimbDetector" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="WallClimbDetectorShape2D" type="CollisionShape2D" parent="WallClimbDetector"]
+position = Vector2(2, -32)
+scale = Vector2(1.24557, 1.13789)
+shape = SubResource("CapsuleShape2D_7uuln")
+disabled = true
+debug_color = Color(0.722517, 0.293774, 0.934469, 0.42)
 
 [node name="InteractionArea" type="Area2D" parent="."]
 collision_layer = 2
@@ -792,3 +778,17 @@ collision_mask = 16
 position = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_ccoug")
 debug_color = Color(0.333333, 0.607843, 0.396078, 0.419608)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_cpcee")
+}
+
+[node name="StateLabel" type="Label" parent="."]
+visible = false
+offset_left = -35.0
+offset_top = -64.0
+offset_right = 25.0
+offset_bottom = -41.0
+text = "test"
+horizontal_alignment = 1

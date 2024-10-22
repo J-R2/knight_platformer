@@ -44,4 +44,4 @@ func _on_wall_climb_area_entered(area :Area2D):
 
 
 func exit() -> void :
-	player.wall_climb_detector_shape_2d.disabled = true
+	player.wall_climb_detector_shape_2d.set_deferred("disabled", true)

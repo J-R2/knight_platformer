@@ -1,7 +1,15 @@
 class_name Player
 extends CharacterBody2D
 
+signal health_changed(new_health)
 
+const MAX_HEALTH = 100.0
+var health = MAX_HEALTH :
+	set(value) :
+		health = clampf(value, 0, MAX_HEALTH)
+		health_changed.emit(health)
+	get:
+		return health
 
 const MAX_SPEED := 150.0
 const DIALOGUE_ICON = preload("res://scenes/actors/player/art/icons/talk.png")
@@ -45,6 +53,7 @@ func _ready() -> void:
 
 
 
+
 func _physics_process(delta: float) -> void:
 	# set the sprites orientation
 	sprite_2d.flip_h = true if direction.x < 0 else false
@@ -52,6 +61,11 @@ func _physics_process(delta: float) -> void:
 	state_label.text = get_node("StateMachine").current_state.name
 #================================================================================
 
+
+
+
+func take_damage(amount:float) -> void :
+	health = health + amount
 
 
 func _on_interaction_area_entered(area:Area2D) -> void :

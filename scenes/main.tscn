@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d26kyr3la0odx"]
+[gd_scene load_steps=8 format=3 uid="uid://d26kyr3la0odx"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_4lv1g"]
 [ext_resource type="PackedScene" uid="uid://berkqovuuonc" path="res://scenes/actors/player/player.tscn" id="1_lp82i"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bi5sm0vimkou1" path="res://scenes/levels/props/wall_hang_area/wall_hang_area.tscn" id="4_fmebn"]
 [ext_resource type="PackedScene" uid="uid://uwubb70vav56" path="res://systems/dialogue/dialogue_interaction_area.tscn" id="4_w8oji"]
 [ext_resource type="PackedScene" uid="uid://ckw65fegngx32" path="res://systems/dialogue/passive_dialogue_cue_area/passive_dialogue_cue_area.tscn" id="5_eicyn"]
+[ext_resource type="PackedScene" uid="uid://dfe1bljbb7ew7" path="res://scenes/levels/props/traps/swinging_saw_trap/swinging_saw_trap.tscn" id="7_mg48m"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4lv1g")
@@ -18,12 +19,7 @@ position = Vector2(107, 241)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="WallHangArea" parent="." instance=ExtResource("4_fmebn")]
-
-[node name="WallHangArea2" parent="." instance=ExtResource("4_fmebn")]
 position = Vector2(323, 164)
-
-[node name="WallHangArea3" parent="." instance=ExtResource("4_fmebn")]
-position = Vector2(445, 68)
 
 [node name="DialogueInteractionArea" parent="." instance=ExtResource("4_w8oji")]
 position = Vector2(403, 323)
@@ -33,3 +29,7 @@ visible = false
 position = Vector2(202, 123)
 message = "Over here!"
 show_timer_length = 2.2
+
+[node name="SwingingSawTrap" parent="." instance=ExtResource("7_mg48m")]
+position = Vector2(447, 70)
+scale = Vector2(1.5, 1.5)

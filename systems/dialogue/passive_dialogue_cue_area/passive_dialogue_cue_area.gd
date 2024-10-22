@@ -26,7 +26,7 @@ func _ready() -> void:
 func _on_body_entered(body:Node2D) -> void :
 	dialogue_bubble.show()
 	for collision in collisions: # Disable the activator collision shapes. Possible to reset timer otherwise.
-		collision.disabled = true
+		collision.set_deferred("disabled", true)
 	var timer = Timer.new()
 	timer.wait_time = show_timer_length
 	timer.one_shot = true
