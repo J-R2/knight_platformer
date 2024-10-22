@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://berkqovuuonc"]
+[gd_scene load_steps=44 format=3 uid="uid://berkqovuuonc"]
 
 [ext_resource type="Texture2D" uid="uid://cipfdi50s1se0" path="res://scenes/actors/player/art/idle.png" id="1_8pm4j"]
 [ext_resource type="Script" path="res://scenes/actors/player/player.gd" id="1_jk7m2"]
@@ -7,24 +7,25 @@
 [ext_resource type="Texture2D" uid="uid://6637fj1isdxx" path="res://scenes/actors/player/art/jump.png" id="3_yt4yq"]
 [ext_resource type="Script" path="res://scripts/state/state_machine.gd" id="4_r7o07"]
 [ext_resource type="Texture2D" uid="uid://dmx4odm6vbege" path="res://scenes/actors/player/art/fall.png" id="5_vlijv"]
-[ext_resource type="Script" path="res://scenes/actors/player/idle.gd" id="6_wc5e8"]
+[ext_resource type="Script" path="res://scenes/actors/player/player_states/idle.gd" id="6_wc5e8"]
 [ext_resource type="Texture2D" uid="uid://0o3deayilqj1" path="res://scenes/actors/player/art/slide.png" id="6_wui68"]
-[ext_resource type="Script" path="res://scenes/actors/player/running.gd" id="7_i8041"]
+[ext_resource type="Script" path="res://scenes/actors/player/player_states/running.gd" id="7_i8041"]
 [ext_resource type="Texture2D" uid="uid://cur6rxe5xbg16" path="res://scenes/actors/player/art/crouch.png" id="7_sqqjf"]
 [ext_resource type="Texture2D" uid="uid://d3kumlqi1wa2d" path="res://scenes/actors/player/art/roll.png" id="8_4efqa"]
-[ext_resource type="Script" path="res://scenes/actors/player/jumping.gd" id="8_oo06g"]
+[ext_resource type="Script" path="res://scenes/actors/player/player_states/jumping.gd" id="8_oo06g"]
 [ext_resource type="Texture2D" uid="uid://u206r15d1jdf" path="res://scenes/actors/player/art/wall_hang.png" id="9_4p1xx"]
-[ext_resource type="Script" path="res://scenes/actors/player/falling.gd" id="10_jv6h2"]
+[ext_resource type="Script" path="res://scenes/actors/player/player_states/falling.gd" id="10_jv6h2"]
 [ext_resource type="Texture2D" uid="uid://ef4psfp0p7p8" path="res://scenes/actors/player/art/wall_climb_nomovement.png" id="10_u2wmp"]
-[ext_resource type="Script" path="res://scenes/actors/player/sliding.gd" id="11_ccnj4"]
+[ext_resource type="Script" path="res://scenes/actors/player/player_states/sliding.gd" id="11_ccnj4"]
 [ext_resource type="Texture2D" uid="uid://byk6iyfnblpjq" path="res://scenes/actors/player/art/attack_nomovement.png" id="11_obdrm"]
 [ext_resource type="Texture2D" uid="uid://bkanyaw6sgwpk" path="res://scenes/actors/player/art/attack2_nomovement.png" id="12_44ugt"]
-[ext_resource type="Script" path="res://scenes/actors/player/crouching.gd" id="13_e2som"]
-[ext_resource type="Script" path="res://scenes/actors/player/rolling.gd" id="16_q67o4"]
-[ext_resource type="Script" path="res://scenes/actors/player/wall_hanging.gd" id="17_qlvfd"]
-[ext_resource type="Script" path="res://scenes/actors/player/wall_climbing.gd" id="20_ay7qk"]
-[ext_resource type="Script" path="res://scenes/actors/player/attacking.gd" id="21_ecrb6"]
-[ext_resource type="Script" path="res://scenes/actors/player/attacking_2.gd" id="23_a0vxj"]
+[ext_resource type="Script" path="res://scenes/actors/player/player_states/crouching.gd" id="13_e2som"]
+[ext_resource type="Script" path="res://scenes/actors/player/player_states/rolling.gd" id="16_q67o4"]
+[ext_resource type="Script" path="res://scenes/actors/player/player_states/wall_hanging.gd" id="17_qlvfd"]
+[ext_resource type="Script" path="res://scenes/actors/player/player_states/wall_climbing.gd" id="20_ay7qk"]
+[ext_resource type="Script" path="res://scenes/actors/player/player_states/attacking.gd" id="21_ecrb6"]
+[ext_resource type="Script" path="res://scenes/actors/player/player_states/attacking_2.gd" id="23_a0vxj"]
+[ext_resource type="PackedScene" uid="uid://dqef6slr586ip" path="res://scenes/actors/player/player_status_bar/player_status_bar.tscn" id="26_wdxsl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_274om"]
 radius = 8.0
@@ -691,7 +692,7 @@ _data = {
 "wallhanging": SubResource("Animation_fj8v6")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
 floor_stop_on_slope = false
 floor_constant_speed = true
@@ -792,3 +793,7 @@ offset_right = 25.0
 offset_bottom = -41.0
 text = "test"
 horizontal_alignment = 1
+
+[node name="StatusBarCanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PlayerStatusBar" parent="StatusBarCanvasLayer" instance=ExtResource("26_wdxsl")]
