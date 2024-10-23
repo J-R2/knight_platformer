@@ -694,7 +694,6 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 2
-floor_stop_on_slope = false
 floor_constant_speed = true
 floor_max_angle = 1.309
 script = ExtResource("1_jk7m2")
@@ -797,3 +796,6 @@ horizontal_alignment = 1
 [node name="StatusBarCanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="PlayerStatusBar" parent="StatusBarCanvasLayer" instance=ExtResource("26_wdxsl")]
+
+[node name="StaminaRecoveryCooldownTimer" type="Timer" parent="."]
+one_shot = true

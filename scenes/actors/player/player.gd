@@ -3,23 +3,24 @@ extends CharacterBody2D
 
 signal health_changed(new_health)
 signal stamina_changed(new_stamina)
+@onready var _stamina_recovery_cooldown_timer: Timer = $StaminaRecoveryCooldownTimer
 
-const MAX_HEALTH = 100.0
-const MAX_STAMINA = 100.0
-const STAMINA_RECOVERY_COOLDOWN_TIME :float = 3.0
+const MAX_HEALTH :float = 100.0
+const MAX_STAMINA :float = 100.0
+const STAMINA_RECOVERY_COOLDOWN_TIME :float = 2.0
 const STAMINA_RECOVERY_RATE :float = 5.0
-var health = MAX_HEALTH :
+var health :float = MAX_HEALTH :
 	set(value) :
 		health = clampf(value, 0, MAX_HEALTH)
 		health_changed.emit(health)
-		print(health)
 	get:
 		return health
-var stamina = MAX_STAMINA :
+var stamina :float = MAX_STAMINA :
 	set(value) :
+		if value < stamina:
+			_reset_stamina_recovery_cooldown_timer()
 		stamina = clampf(value, 0, MAX_STAMINA)
 		stamina_changed.emit(stamina)
-		print(stamina)
 	get:
 		return stamina
 
@@ -32,7 +33,6 @@ const DEFAULT_COLLISION_POS := Vector2(-5, -19) ## the default position of the c
 const DEFAULT_COLLISION_SIZE := Vector2(18, 38) ##NOTICE deprecated
 const DEFAULT_COLLISION_RADIUS :int = 8 ## the default size of the collision_shape2d
 const DEFAULT_COLLISION_HEIGHT :int = 38 ## the default size of the collision_shape2d
-
 
 var direction := Vector2.RIGHT ## keeps track of the players facing direction left or right, sign()ed
 
@@ -47,13 +47,9 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 @onready var icon: Sprite2D = $Icon
 @onready var player_status_bar: Control = $StatusBarCanvasLayer/PlayerStatusBar
 
-
-
-
-
 var is_dialogue_interactable :bool = false
 var is_interactable :bool = false
-
+var is_stamina_recovery_able :bool = true
 
 #================================================================================
 @onready var state_label: Label = $StateLabel
@@ -66,7 +62,7 @@ func _ready() -> void:
 	icon.hide()
 	interaction_area.area_entered.connect(_on_interaction_area_entered)
 	interaction_area.area_exited.connect(_on_interaction_area_exited)
-
+	_stamina_recovery_cooldown_timer.timeout.connect(func() -> void : is_stamina_recovery_able = true)
 
 
 func _physics_process(delta: float) -> void:
@@ -77,8 +73,14 @@ func _physics_process(delta: float) -> void:
 #================================================================================
 	if Input.is_action_just_pressed("use_item"):
 		health = MAX_HEALTH
+	if is_stamina_recovery_able:
+		stamina = move_toward(stamina, MAX_STAMINA, STAMINA_RECOVERY_RATE * delta)
 
 
+func _reset_stamina_recovery_cooldown_timer() -> void :
+	is_stamina_recovery_able = false
+	_stamina_recovery_cooldown_timer.wait_time = STAMINA_RECOVERY_COOLDOWN_TIME
+	_stamina_recovery_cooldown_timer.start()
 
 func change_stamina(amount:float) -> void :
 	stamina = stamina + amount
@@ -103,7 +105,6 @@ func _on_interaction_area_exited(area:Area2D) -> void :
 	if area is DialogueInteractionArea:
 		is_dialogue_interactable = false
 		player_status_bar.fade_in()
-
 
 
 func set_collision_orientation(collision_position :Vector2 = DEFAULT_COLLISION_POS) -> void :

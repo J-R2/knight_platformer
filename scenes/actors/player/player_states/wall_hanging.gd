@@ -21,6 +21,5 @@ func physics_update(delta:float) -> void :
 	if Input.is_action_just_pressed("crouch"):
 		finished.emit(FALLING)
 	if Input.is_action_just_pressed("jump"):
-		if player.stamina > WALL_CLIMB_STAMINA_DRAIN_AMOUNT:
-			player.change_stamina(-WALL_CLIMB_STAMINA_DRAIN_AMOUNT)
-			finished.emit(WALL_CLIMBING)
+		player.change_stamina(-WALL_CLIMB_STAMINA_DRAIN_AMOUNT)
+		finished.emit(WALL_CLIMBING)
