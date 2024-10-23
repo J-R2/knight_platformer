@@ -6,16 +6,20 @@ signal stamina_changed(new_stamina)
 
 const MAX_HEALTH = 100.0
 const MAX_STAMINA = 100.0
+const STAMINA_RECOVERY_COOLDOWN_TIME :float = 3.0
+const STAMINA_RECOVERY_RATE :float = 5.0
 var health = MAX_HEALTH :
 	set(value) :
 		health = clampf(value, 0, MAX_HEALTH)
 		health_changed.emit(health)
+		print(health)
 	get:
 		return health
 var stamina = MAX_STAMINA :
 	set(value) :
 		stamina = clampf(value, 0, MAX_STAMINA)
 		stamina_changed.emit(stamina)
+		print(stamina)
 	get:
 		return stamina
 
@@ -46,6 +50,7 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 
 
 
+
 var is_dialogue_interactable :bool = false
 var is_interactable :bool = false
 
@@ -64,7 +69,6 @@ func _ready() -> void:
 
 
 
-
 func _physics_process(delta: float) -> void:
 	# set the sprites orientation
 	sprite_2d.flip_h = true if direction.x < 0 else false
@@ -74,6 +78,10 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("use_item"):
 		health = MAX_HEALTH
 
+
+
+func change_stamina(amount:float) -> void :
+	stamina = stamina + amount
 
 
 func take_damage(amount:float) -> void :

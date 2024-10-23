@@ -34,4 +34,3 @@ func _wall_climb() -> void :
 
 func exit() -> void :
 	player.animation_player.speed_scale = 1.0
-	tween.kill()
