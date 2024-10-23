@@ -5,7 +5,7 @@ const DIALOGUE_FILE_PATH :String = "res://systems/dialogue/dialogue.json"
 
 ## The conversation title, used to determine which set of dialogue_items to display from dialogue.json
 @export var conversation_title :String = "knight_and_percival_introduction"
-
+## The UI that displays conversations
 @onready var dialogue_display_system : DialogueDisplaySystem = $CanvasLayer/DialogueDisplaySystem
 
 var dialogue_items :Array[DialogueItem] = [] ## Holds all the DialogueItems for a given conversation_title
@@ -16,21 +16,25 @@ func _ready() -> void :
 	self.process_mode = Node.PROCESS_MODE_ALWAYS # Pause the game during conversations. Don't pause this script.
 	_load() # load the current conversation into the dialogue_items array
 	dialogue_display_system.option_chosen.connect(_on_option_chosen)
+# ***************************************************************************************************************** INFO ALERT
+	# I imagine this system would break if I grab focus on an option in the dialogue_display_system inspector, 
+	# as I am only hiding all the dialogue guis not disabling any active option buttons. so if something breaks,
+	# maybe instanciate a new dialogue display system when the player interacts instead of having it in the scene to begin with
 	dialogue_display_system.hide()
 
 
 ## Activate the dialogue UI if the player is in the area and interacts with it.
 func _input(event: InputEvent) -> void:
-	var is_interaction_request = (
+	var is_interaction_request = ( # true if player has pressed "interact" while in the interaction area
 		(event is InputEventKey or event is InputEventJoypadButton) and 
 		event.is_pressed() and
 		event.is_action("interact") and 
 		self.has_overlapping_areas() and
-		_interaction_enabled
+		_interaction_enabled # conversations occur 1 time
 	)
 	if is_interaction_request:
-		# Disable the interaction_enabled, show the dialogue's first conversation item and pause the game.
-		_interaction_enabled = false
+		# pause the game, start the conversation at [0], and show the gui
+		_interaction_enabled = false # disable possibility to start converstaoin
 		dialogue_display_system.show()
 		dialogue_display_system.display_message(dialogue_items[0])
 		get_tree().paused = true

@@ -5,7 +5,7 @@ extends Control
 ## How fast the text label should show the message.
 const LETTERS_PER_SECOND :float = 30.0
 
-@onready var message_label: RichTextLabel = %MessageLabel
+@onready var message_label: RichTextLabel = %MessageLabel ## the rich text label that displays the conversation message
 @onready var options_container: VBoxContainer = %OptionsContainer ## Holds the DialogueItem options buttons
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer #TODO Possibly add sound for player choices or voice lines.
 

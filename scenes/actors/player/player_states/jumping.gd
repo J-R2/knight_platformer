@@ -2,7 +2,7 @@ extends PlayerState
 
 
 const JUMP_FORCE := 350.0
-#const JUMP_STAMINA_COST := 10.0
+const JUMP_STAMINA_COST := 5.0
 
 
 func _ready() -> void:
@@ -11,10 +11,10 @@ func _ready() -> void:
 	player.wall_climb_detector.area_entered.connect(_on_wall_climb_area_entered)
 
 func enter() -> void :
-	#if player.stamina < JUMP_STAMINA_COST / 2:
-		#finished.emit(get_parent().previous_state)
-		#return
-	#player.change_stamina(-JUMP_STAMINA_COST)
+	if player.stamina < JUMP_STAMINA_COST / 2:
+		finished.emit(get_parent().previous_state)
+		return
+	player.change_stamina(-JUMP_STAMINA_COST)
 	
 	# play the jump animation
 	player.animation_player.play(JUMPING.to_lower())
@@ -38,8 +38,10 @@ func physics_update(delta:float) -> void :
 
 	
 func _on_wall_climb_area_entered(area :Area2D):
-	if area.is_in_group("wall_hanging_areas"):
-		finished.emit(WALL_HANGING)
+	if player.player_state_machine.current_state.name == JUMPING:
+		print("hello from jumping")
+		if area.is_in_group("wall_hanging_areas"):
+			finished.emit(WALL_HANGING)
 
 
 func exit() -> void :

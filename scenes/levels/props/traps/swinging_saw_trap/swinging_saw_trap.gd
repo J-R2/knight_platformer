@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var damage_amount = 25 ## changed to a negative on take_damage() call
+@export var damage_amount = 25
 
 var _is_active :bool = true
 
@@ -13,7 +13,7 @@ func _ready() -> void :
 func _on_body_entered(body:Node2D) -> void :
 	if body.has_method("take_damage") and _is_active:
 		_is_active = false
-		body.take_damage(-damage_amount)
+		body.take_damage(damage_amount)
 		var wait_timer = Timer.new()
 		wait_timer.wait_time = _ATTACK_COOLDOWN_WAIT_TIME
 		wait_timer.one_shot = true
