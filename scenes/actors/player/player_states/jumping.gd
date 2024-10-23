@@ -2,6 +2,8 @@ extends PlayerState
 
 
 const JUMP_FORCE := 350.0
+const JUMP_STAMINA_COST := 15
+
 
 func _ready() -> void:
 	super._ready()
@@ -9,6 +11,10 @@ func _ready() -> void:
 	player.wall_climb_detector.area_entered.connect(_on_wall_climb_area_entered)
 
 func enter() -> void :
+	if player.stamina < JUMP_STAMINA_COST / 2:
+		finished.emit(get_parent().previous_state)
+		return
+	player.change_stamina(-JUMP_STAMINA_COST)
 	# play the jump animation
 	player.animation_player.play(JUMPING.to_lower())
 	# set the jumping collision size

@@ -13,6 +13,7 @@ func _ready() -> void:
 	if initial_state == null:
 		initial_state = get_child(0)
 	current_state = initial_state
+	previous_state = initial_state.name
 	for state_node : State in find_children("*", "State"):
 		state_node.finished.connect(_on_state_finished)
 
