@@ -7,8 +7,8 @@ signal stamina_changed(new_stamina)
 
 const MAX_HEALTH :float = 100.0
 const MAX_STAMINA :float = 100.0
-const STAMINA_RECOVERY_COOLDOWN_TIME :float = 2.0
-const STAMINA_RECOVERY_RATE :float = 5.0
+const STAMINA_RECOVERY_COOLDOWN_TIME :float = 1.8
+const STAMINA_RECOVERY_RATE :float = 15.0
 var health :float = MAX_HEALTH :
 	set(value) :
 		health = clampf(value, 0, MAX_HEALTH)
@@ -73,7 +73,7 @@ func _physics_process(delta: float) -> void:
 #================================================================================
 	if Input.is_action_just_pressed("use_item"):
 		health = MAX_HEALTH
-	if is_stamina_recovery_able:
+	if is_stamina_recovery_able and stamina < MAX_STAMINA:
 		stamina = move_toward(stamina, MAX_STAMINA, STAMINA_RECOVERY_RATE * delta)
 
 

@@ -28,7 +28,6 @@ position = Vector2(403, 323)
 visible = false
 position = Vector2(202, 123)
 message = "Over here!"
-show_timer_length = 2.2
 
 [node name="SwingingSawTrap" parent="." instance=ExtResource("7_mg48m")]
 position = Vector2(447, 70)

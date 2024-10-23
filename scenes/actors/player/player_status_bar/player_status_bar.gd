@@ -3,7 +3,8 @@ extends Control
 @onready var health_progress_bar: ProgressBar = %HealthProgressBar
 @onready var stamina_progress_bar: ProgressBar = %StaminaProgressBar
 
-const FADE_DURATION :float = 0.3
+const FADE_DURATION :float = 0.5
+const DYNAMIC_FADE_WAIT_TIME = 3.5
 var _fade_timer :Timer
 
 
@@ -57,6 +58,6 @@ func fade_out() -> void :
 
 
 func _reset_fade_timer() -> void :
-	_fade_timer.wait_time = 5.0
+	_fade_timer.wait_time = DYNAMIC_FADE_WAIT_TIME
 	_fade_timer.start()
 	

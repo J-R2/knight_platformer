@@ -4,6 +4,7 @@ var state_duration :float = 1.0 # RESET ON _READY(), after setting animation, ge
 var state_timer :float = 0.0 # Counts up by delta, until reaches state_duration, then transition to next state
 var next_state := IDLE # default next state to IDLE
 
+const ATTACK_STAMINA_COST :float = 7.0
 
 func _ready() -> void:
 	super._ready()
@@ -12,6 +13,10 @@ func _ready() -> void:
 
 
 func enter() -> void :
+	if player.stamina < ATTACK_STAMINA_COST / 2:
+		finished.emit(IDLE)
+		return
+	player.change_stamina(-ATTACK_STAMINA_COST)
 	player.attack_area_shape_2d.disabled = false
 	player.animation_player.play(ATTACKING.to_lower())
 	state_duration = player.animation_player.current_animation_length

@@ -13,9 +13,14 @@ const ROLLING_SPEED_SCALE = 1.1
 var max_roll_time := 0.0
 var roll_timer := 0.0
 
+const ROLLING_STAMINA_COST := 8.0
 
 
 func enter() -> void :
+	if player.stamina < ROLLING_STAMINA_COST / 2:
+		finished.emit(get_parent().previous_state)
+		return
+	player.change_stamina(-ROLLING_STAMINA_COST)
 	player.animation_player.play(ROLLING.to_lower())
 	player.animation_player.speed_scale = ROLLING_SPEED_SCALE
 	player.set_collision_shape(ROLLING_COLLISION_POS, ROLLING_COLLISION_RADIUS, ROLLING_COLLISION_HEIGHT)

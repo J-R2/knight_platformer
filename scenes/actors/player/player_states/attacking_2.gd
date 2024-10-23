@@ -2,7 +2,7 @@ extends PlayerState
 
 var state_duration :float = 1.0
 var state_timer :float = 0.0
-
+const STRONG_ATTACK_STAMINA_COST :float = 10.0
 
 func _ready() -> void:
 	super._ready()
@@ -11,6 +11,10 @@ func _ready() -> void:
 
 
 func enter() -> void :
+	if player.stamina < STRONG_ATTACK_STAMINA_COST / 2:
+		finished.emit(IDLE)
+		return
+	player.change_stamina(-STRONG_ATTACK_STAMINA_COST)
 	player.attack_area_shape_2d.disabled = false
 	player.animation_player.play(ATTACKING_2.to_lower())
 	state_duration = player.animation_player.current_animation_length
