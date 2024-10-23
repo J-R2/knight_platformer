@@ -16,7 +16,7 @@ extends Area2D
 
 # Set the label text to the message, default hide the bubble sprite, and connect the signal to activate.
 func _ready() -> void:
-	show()
+	show() # possibly hidden on level scene tree
 	label.text = message
 	dialogue_bubble.hide()
 	self.body_entered.connect(_on_body_entered)
@@ -27,6 +27,7 @@ func _on_body_entered(body:Node2D) -> void :
 	dialogue_bubble.show()
 	for collision in collisions: # Disable the activator collision shapes. Possible to reset timer otherwise.
 		collision.set_deferred("disabled", true)
+	# timer for how long to display passive dialogue message, remove from scene on timeout
 	var timer = Timer.new()
 	timer.wait_time = show_timer_length
 	timer.one_shot = true

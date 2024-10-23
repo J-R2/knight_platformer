@@ -33,8 +33,7 @@ func physics_update(delta :float) -> void :
 
 ## hang on the wall if you touch a wall_climb area while falling
 func _on_wall_climb_area_entered(area :Area2D):
-	if player.player_state_machine.current_state.name == FALLING:
-		print("hello from falling")
+	if player.player_state_machine.current_state == self:
 		if area.is_in_group("wall_hanging_areas"):
 			finished.emit(WALL_HANGING)
 
