@@ -45,8 +45,8 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var wall_climb_detector: Area2D = $WallClimbDetector
 @onready var wall_climb_detector_shape_2d: CollisionShape2D = $WallClimbDetector/WallClimbDetectorShape2D
-@onready var attack_area_2d: Area2D = $AttackArea2D
-@onready var attack_area_shape_2d: CollisionShape2D = $AttackArea2D/AttackAreaShape2D
+@onready var attack_area: Area2D = $AttackArea
+@onready var attack_area_shape_2d: CollisionShape2D = $AttackArea/AttackAreaShape2D
 @onready var interaction_area: Area2D = $InteractionArea
 @onready var icon: Sprite2D = $Icon
 @onready var _stamina_recovery_cooldown_timer: Timer = $StaminaRecoveryCooldownTimer
@@ -68,8 +68,13 @@ func _ready() -> void:
 	interaction_area.area_exited.connect(_on_interaction_area_exited)
 	# connect the stamina_recovery_cooldown_timer to enable stamina recovery
 	_stamina_recovery_cooldown_timer.timeout.connect(func() -> void : is_stamina_recovery_able = true)
+	wall_climb_detector.area_entered.connect(_on_wall_climb_detector_area_entered)
+	attack_area.area_entered.connect(_on_attack_area_entered)
 
 
+func _on_attack_area_entered(area:Area2D) -> void :
+	if player_state_machine.current_state.has_method("on_attack_area_entered"):
+		player_state_machine.current_state.on_attack_area_entered(area)
 
 
 func _physics_process(delta: float) -> void:
@@ -111,6 +116,12 @@ func has_max_stats() -> bool :
 		health == MAX_HEALTH and 
 		stamina == MAX_STAMINA
 	)
+
+
+## Calls the current states' function definition when the wall climb area is entered.
+func _on_wall_climb_detector_area_entered(area:Area2D) -> void :
+	if player_state_machine.current_state.has_method("on_wall_climb_detector_area_entered"):
+		player_state_machine.current_state.on_wall_climb_detector_area_entered(area)
 
 
 ## Runs when something enters the player's interaction area. - collision mask for interactables only

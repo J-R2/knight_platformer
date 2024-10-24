@@ -6,7 +6,7 @@ var next_state := IDLE
 func _ready() -> void:
 	super._ready()
 	await owner.ready
-	player.wall_climb_detector.area_entered.connect(_on_wall_climb_area_entered)
+	#player.wall_climb_detector.area_entered.connect(_on_wall_climb_area_entered)
 
 
 func enter() -> void :
@@ -32,12 +32,11 @@ func physics_update(delta :float) -> void :
 
 
 ## hang on the wall if you touch a wall_climb area while falling
-func _on_wall_climb_area_entered(area :Area2D):
-	if player.player_state_machine.current_state == self:
-		if area.is_in_group("wall_hanging_areas"):
-			finished.emit(WALL_HANGING)
+func on_wall_climb_detector_area_entered(area :Area2D) -> void:
+	if area.is_in_group("wall_hanging_areas"):
+		finished.emit(WALL_HANGING)
 
-
+	
 func exit() -> void :
 	# disable wall climbing ability
 	player.wall_climb_detector_shape_2d.disabled = true

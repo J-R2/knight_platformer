@@ -1,16 +1,15 @@
 extends PlayerState
 
-
 var state_duration :float = 1.0 ## The length of the attack animation, RESET on state enter and animation has been set
 var state_timer :float = 0.0 ## Counts up by delta, until reaches state_duration, then transition to next state
 const STRONG_ATTACK_STAMINA_COST :float = 10.0 ## The stamina cost of a strong attack.
+const MAX_ATTACK_DAMAGE :float = 40.0
+const MIN_ATTACK_DAMAGE :float = 25.0
+
 
 func _ready() -> void:
 	super._ready()
 	await owner.ready
-	# NOTICE both attack states will probably run their _on_attack_area_entered() function, 
-	# might need to change this to be in the state machine script to call only the current states _on_attack_area_entered function
-	player.attack_area_2d.area_entered.connect(_on_attack_area_entered)
 	state_duration = player.animation_player.get_animation(ATTACKING_2.to_lower()).length
 
 
@@ -20,9 +19,8 @@ func enter() -> void :
 		finished.emit(IDLE)
 		return
 	player.change_stamina(-STRONG_ATTACK_STAMINA_COST) # expend the strong attack stamina cost
-	player.attack_area_shape_2d.disabled = false # enable the attack area
+	player.attack_area_shape_2d.set_deferred("disabled", false)
 	player.animation_player.play(ATTACKING_2.to_lower()) # play the strong attack animation
-
 
 
 func physics_update(delta:float) -> void :
@@ -32,12 +30,12 @@ func physics_update(delta:float) -> void :
 
 
 #NOTICE read _ready function comments
-func _on_attack_area_entered(area:Area2D):
-	print("Attacking:  ", area.name)
-	player.attack_area_shape_2d.disabled = true
+func on_attack_area_entered(area:Area2D):
+	print("Strong attack: ", randi_range(MIN_ATTACK_DAMAGE, MAX_ATTACK_DAMAGE), " damage to ", area.name)
+	player.attack_area_shape_2d.set_deferred("disabled", true)
 
 
 func exit() -> void :
 	# reset variables to default values
-	player.attack_area_shape_2d.disabled = true
+	player.attack_area_shape_2d.set_deferred("disabled", true)
 	state_timer = 0.0

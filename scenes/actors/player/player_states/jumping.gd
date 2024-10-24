@@ -8,7 +8,7 @@ const JUMP_STAMINA_COST := 5.0 ## jumping costs this much stamina
 func _ready() -> void:
 	super._ready()
 	await owner.ready
-	player.wall_climb_detector.area_entered.connect(_on_wall_climb_area_entered)
+	#player.wall_climb_detector.area_entered.connect(_on_wall_climb_area_entered)
 
 
 func enter() -> void :
@@ -36,12 +36,10 @@ func physics_update(delta:float) -> void :
 	if player.velocity.y > 0.0:
 		finished.emit(FALLING)
 
-	
-func _on_wall_climb_area_entered(area :Area2D):
-	if player.player_state_machine.current_state == self:
-		print("hello from jumping")
-		if area.is_in_group("wall_hanging_areas"):
-			finished.emit(WALL_HANGING)
+
+func _on_wall_climb_detector_area_entered(area :Area2D):
+	if area.is_in_group("wall_hanging_areas"):
+		finished.emit(WALL_HANGING)
 
 
 func exit() -> void :

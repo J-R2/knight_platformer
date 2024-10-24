@@ -750,11 +750,11 @@ texture = ExtResource("3_cuy4e")
 position = Vector2(-5, -19)
 shape = SubResource("CapsuleShape2D_274om")
 
-[node name="AttackArea2D" type="Area2D" parent="."]
+[node name="AttackArea" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 36
 
-[node name="AttackAreaShape2D" type="CollisionShape2D" parent="AttackArea2D"]
+[node name="AttackAreaShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(26, -20)
 shape = SubResource("RectangleShape2D_eyyaq")
 disabled = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d26kyr3la0odx"]
+[gd_scene load_steps=9 format=3 uid="uid://d26kyr3la0odx"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_4lv1g"]
 [ext_resource type="PackedScene" uid="uid://berkqovuuonc" path="res://scenes/actors/player/player.tscn" id="1_lp82i"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://uwubb70vav56" path="res://systems/dialogue/dialogue_interaction_area.tscn" id="4_w8oji"]
 [ext_resource type="PackedScene" uid="uid://ckw65fegngx32" path="res://systems/dialogue/passive_dialogue_cue_area/passive_dialogue_cue_area.tscn" id="5_eicyn"]
 [ext_resource type="PackedScene" uid="uid://dfe1bljbb7ew7" path="res://scenes/levels/props/traps/swinging_saw_trap/swinging_saw_trap.tscn" id="7_mg48m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyeha"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4lv1g")
@@ -32,3 +34,12 @@ message = "Over here!"
 [node name="SwingingSawTrap" parent="." instance=ExtResource("7_mg48m")]
 position = Vector2(447, 70)
 scale = Vector2(1.5, 1.5)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(194, 236)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_jyeha")
+debug_color = Color(0.685576, 0, 0.0144652, 0.42)
