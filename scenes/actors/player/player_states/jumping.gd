@@ -32,7 +32,7 @@ func enter() -> void :
 func physics_update(delta:float) -> void :
 	player.set_collision_orientation()
 	player.move_player(delta)
-	# if player has startet going down change to falling state
+	# if player is going down change to falling state
 	if player.velocity.y > 0.0:
 		finished.emit(FALLING)
 

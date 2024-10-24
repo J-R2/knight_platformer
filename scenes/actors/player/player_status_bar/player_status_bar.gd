@@ -24,6 +24,7 @@ func _ready() -> void :
 	_fade_timer.one_shot = true
 	self.add_child(_fade_timer)
 	_fade_timer.timeout.connect(fade_out)
+	_reset_fade_timer()
 	
 
 ## Changes the stamina status bar to match the new stamina value.
