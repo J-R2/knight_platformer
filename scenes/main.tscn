@@ -14,16 +14,11 @@ script = ExtResource("1_4lv1g")
 
 [node name="Level1Map" parent="." instance=ExtResource("2_yflwl")]
 
-[node name="Player" parent="." instance=ExtResource("1_lp82i")]
-position = Vector2(107, 241)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-
 [node name="WallHangArea" parent="." instance=ExtResource("4_fmebn")]
 position = Vector2(323, 164)
 
 [node name="DialogueInteractionArea" parent="." instance=ExtResource("4_w8oji")]
-position = Vector2(552, 309)
+position = Vector2(563, 309)
 
 [node name="PassiveDialogueCueArea" parent="." instance=ExtResource("5_eicyn")]
 visible = false
@@ -34,14 +29,33 @@ message = "Over here!"
 position = Vector2(447, 70)
 scale = Vector2(1.5, 1.5)
 
-[node name="Slime" parent="." instance=ExtResource("8_280o5")]
+[node name="Node" type="Node2D" parent="."]
+
+[node name="Slime" parent="Node" instance=ExtResource("8_280o5")]
 position = Vector2(505, 139)
 
-[node name="Slime2" parent="." instance=ExtResource("8_280o5")]
+[node name="Slime8" parent="Node" instance=ExtResource("8_280o5")]
+position = Vector2(368, 126)
+
+[node name="Slime2" parent="Node" instance=ExtResource("8_280o5")]
 position = Vector2(389, 324)
 
-[node name="Slime3" parent="." instance=ExtResource("8_280o5")]
+[node name="Slime3" parent="Node" instance=ExtResource("8_280o5")]
 position = Vector2(232, 227)
 
-[node name="Slime4" parent="." instance=ExtResource("8_280o5")]
-position = Vector2(366, 140)
+[node name="Slime5" parent="Node" instance=ExtResource("8_280o5")]
+position = Vector2(207, 227)
+
+[node name="Slime6" parent="Node" instance=ExtResource("8_280o5")]
+position = Vector2(179, 206)
+
+[node name="Slime9" parent="Node" instance=ExtResource("8_280o5")]
+position = Vector2(380, 142)
+
+[node name="Slime10" parent="Node" instance=ExtResource("8_280o5")]
+position = Vector2(352, 142)
+
+[node name="Player" parent="." instance=ExtResource("1_lp82i")]
+position = Vector2(114, 244)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]

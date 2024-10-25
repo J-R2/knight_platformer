@@ -1,3 +1,34 @@
+### Controls
+
+#### Mouse & Keyboard
+
+WASD - Move Player
+
+Left Click / Double Left Click - Attack / Combo Attack
+
+Right Click / Shift - Roll
+
+Ctrl / C - Crouch / Slide (while moving)
+
+Q - Use Item
+
+E - Interact
+
+#### Gamepad
+
+Left Stick - Move Player
+
+Right Trigger / X (Xbox) / Square (Dualshock) - Attack / Combo Attack
+
+Right Bumber - Roll
+
+B (Xbox) / Circle (Dualshock) - Crouch / Slide (while moving)
+
+Y (Xbox) / Triangle (Dualshock) - Use Item
+
+A (Xbox) / Cross (Dualshock) - Jump / Interact
+
+##
 ### Credits
 
 
