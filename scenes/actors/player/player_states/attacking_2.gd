@@ -29,10 +29,15 @@ func physics_update(delta:float) -> void :
 		finished.emit(IDLE)
 
 
-#NOTICE read _ready function comments
-func on_attack_area_entered(area:Area2D):
+func on_attack_area_area_entered(area:Area2D):
 	print("Strong attack: ", randi_range(MIN_ATTACK_DAMAGE, MAX_ATTACK_DAMAGE), " damage to ", area.name)
 	player.attack_area_shape_2d.set_deferred("disabled", true)
+
+
+func on_attack_area_body_entered(body:Node2D):
+	player.attack_area_shape_2d.set_deferred("disabled", true)
+	if body.has_method("take_damage"):
+		body.take_damage(randi_range(MIN_ATTACK_DAMAGE, MAX_ATTACK_DAMAGE))
 
 
 func exit() -> void :

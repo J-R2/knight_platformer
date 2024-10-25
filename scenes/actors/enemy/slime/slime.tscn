@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d4nxasgglm354"]
+[gd_scene load_steps=15 format=3 uid="uid://d4nxasgglm354"]
 
 [ext_resource type="Script" path="res://scenes/actors/enemy/slime/slime.gd" id="1_38lxh"]
 [ext_resource type="Texture2D" uid="uid://jq7wd4438y58" path="res://scenes/actors/enemy/slime/slime.png" id="1_kct8v"]
@@ -73,7 +73,13 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_782nv"]
-radius = 6.0
+radius = 8.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0cxo"]
+size = Vector2(40, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wl8v4"]
+size = Vector2(16, 13)
 
 [node name="Slime" type="CharacterBody2D"]
 collision_layer = 4
@@ -88,10 +94,34 @@ animation = &"move"
 frame_progress = 0.232034
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -6)
+visible = false
+position = Vector2(0, -8)
 shape = SubResource("CircleShape2D_782nv")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(0, -6)
-target_position = Vector2(40, 0)
+[node name="EnemyDetectionArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
 collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
+position = Vector2(-3.10977e-05, -20)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_p0cxo")
+
+[node name="AttackArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(0, -6.5)
+shape = SubResource("RectangleShape2D_wl8v4")
+debug_color = Color(0.952941, 0.207843, 0.192157, 0.419608)
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -18.0
+offset_top = -45.0
+offset_right = 22.0
+offset_bottom = -22.0

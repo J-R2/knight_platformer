@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d26kyr3la0odx"]
+[gd_scene load_steps=9 format=3 uid="uid://d26kyr3la0odx"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_4lv1g"]
 [ext_resource type="PackedScene" uid="uid://berkqovuuonc" path="res://scenes/actors/player/player.tscn" id="1_lp82i"]
@@ -8,8 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://ckw65fegngx32" path="res://systems/dialogue/passive_dialogue_cue_area/passive_dialogue_cue_area.tscn" id="5_eicyn"]
 [ext_resource type="PackedScene" uid="uid://dfe1bljbb7ew7" path="res://scenes/levels/props/traps/swinging_saw_trap/swinging_saw_trap.tscn" id="7_mg48m"]
 [ext_resource type="PackedScene" uid="uid://d4nxasgglm354" path="res://scenes/actors/enemy/slime/slime.tscn" id="8_280o5"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyeha"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_4lv1g")
@@ -25,7 +23,7 @@ position = Vector2(107, 241)
 position = Vector2(323, 164)
 
 [node name="DialogueInteractionArea" parent="." instance=ExtResource("4_w8oji")]
-position = Vector2(403, 323)
+position = Vector2(552, 309)
 
 [node name="PassiveDialogueCueArea" parent="." instance=ExtResource("5_eicyn")]
 visible = false
@@ -36,14 +34,14 @@ message = "Over here!"
 position = Vector2(447, 70)
 scale = Vector2(1.5, 1.5)
 
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(194, 236)
-collision_layer = 4
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_jyeha")
-debug_color = Color(0.685576, 0, 0.0144652, 0.42)
-
 [node name="Slime" parent="." instance=ExtResource("8_280o5")]
-position = Vector2(195, 223)
+position = Vector2(211, 235)
+
+[node name="Slime2" parent="." instance=ExtResource("8_280o5")]
+position = Vector2(257, 234)
+
+[node name="Slime3" parent="." instance=ExtResource("8_280o5")]
+position = Vector2(233, 230)
+
+[node name="Slime4" parent="." instance=ExtResource("8_280o5")]
+position = Vector2(193, 217)

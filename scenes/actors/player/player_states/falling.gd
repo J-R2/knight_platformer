@@ -13,7 +13,6 @@ func enter() -> void :
 	# play the falling animation and set the collision size
 	player.animation_player.play(FALLING.to_lower())
 	player.set_collision_shape()
-	next_state = IDLE
 	player.wall_climb_detector_shape_2d.disabled = false # enable wall grabbing ability
 
 
@@ -38,5 +37,6 @@ func on_wall_climb_detector_area_entered(area :Area2D) -> void:
 
 	
 func exit() -> void :
+	next_state = IDLE
 	# disable wall climbing ability
 	player.wall_climb_detector_shape_2d.disabled = true

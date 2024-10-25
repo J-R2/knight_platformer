@@ -69,12 +69,17 @@ func _ready() -> void:
 	# connect the stamina_recovery_cooldown_timer to enable stamina recovery
 	_stamina_recovery_cooldown_timer.timeout.connect(func() -> void : is_stamina_recovery_able = true)
 	wall_climb_detector.area_entered.connect(_on_wall_climb_detector_area_entered)
-	attack_area.area_entered.connect(_on_attack_area_entered)
+	attack_area.area_entered.connect(_on_attack_area_area_entered)
+	attack_area.body_entered.connect(_on_attack_area_body_entered)
 
 
-func _on_attack_area_entered(area:Area2D) -> void :
-	if player_state_machine.current_state.has_method("on_attack_area_entered"):
-		player_state_machine.current_state.on_attack_area_entered(area)
+func _on_attack_area_area_entered(area:Area2D) -> void :
+	if player_state_machine.current_state.has_method("on_attack_area_area_entered"):
+		player_state_machine.current_state.on_attack_area_area_entered(area)
+		
+func _on_attack_area_body_entered(body:Node2D) -> void :
+	if player_state_machine.current_state.has_method("on_attack_area_body_entered"):
+		player_state_machine.current_state.on_attack_area_body_entered(body)
 
 
 func _physics_process(delta: float) -> void:
