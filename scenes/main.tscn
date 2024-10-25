@@ -35,13 +35,13 @@ position = Vector2(447, 70)
 scale = Vector2(1.5, 1.5)
 
 [node name="Slime" parent="." instance=ExtResource("8_280o5")]
-position = Vector2(211, 235)
+position = Vector2(505, 139)
 
 [node name="Slime2" parent="." instance=ExtResource("8_280o5")]
-position = Vector2(257, 234)
+position = Vector2(389, 324)
 
 [node name="Slime3" parent="." instance=ExtResource("8_280o5")]
-position = Vector2(233, 230)
+position = Vector2(232, 227)
 
 [node name="Slime4" parent="." instance=ExtResource("8_280o5")]
-position = Vector2(193, 217)
+position = Vector2(366, 140)
