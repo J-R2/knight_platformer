@@ -20,7 +20,7 @@ Left Stick - Move Player
 
 Right Trigger / X (Xbox) / Square (Dualshock) - Attack / Combo Attack
 
-Right Bumber - Roll
+Right Bumper - Roll
 
 B (Xbox) / Circle (Dualshock) - Crouch / Slide (while moving)
 
