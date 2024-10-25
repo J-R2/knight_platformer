@@ -24,3 +24,6 @@
 
 [Animated Traps](https://stealthix.itch.io/animated-traps) by [Stealthix](https://stealthix.itch.io/)
 
+
+
+[LPC Monsters](https://opengameart.org/content/lpc-monsters) by Charles Sanchez (CharlesGabriel), bagzie, and bluecarrot16
