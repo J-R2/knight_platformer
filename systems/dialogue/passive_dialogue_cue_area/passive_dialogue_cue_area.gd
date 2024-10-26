@@ -23,7 +23,7 @@ func _ready() -> void:
 	
 	
 # Show the dialogue bubble and start the timer until queue_free()
-func _on_body_entered(body:Node2D) -> void :
+func _on_body_entered(_body:Node2D) -> void :
 	dialogue_bubble.show()
 	for collision in collisions: # Disable the activator collision shapes. Possible to reset timer otherwise.
 		collision.set_deferred("disabled", true)

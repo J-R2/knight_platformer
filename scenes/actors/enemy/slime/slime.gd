@@ -8,7 +8,7 @@ var health :float = 18.0 ## the amount of health a slime has
 const SPEED :float = 10.0 ## the speed of a slime monster
 const DAMAGE_AMOUNT :float = 5.0 ## the amount of damage a slime deals
 const MAX_SIGHT_DISTANCE :float = 200.0 ## the distance away a slime can "see", will lose sight if target is out of range
-const FOLLOW_SPEED_MULTIPLIER :float = 1.35
+const FOLLOW_SPEED_MULTIPLIER :float = 1.75
 # environment variables
 const JUMP_FORCE :float = 125.0 ## the height of a slime's jump
 const GRAVITY :float = 900.0 ## the gravity applied to a slime monseter
@@ -55,7 +55,10 @@ func _physics_process(delta: float) -> void:
 		States.FOLLOW: # ==================================================== FOLLOW STATE PROCESS
 			var target_position :Vector2 = target.global_position - global_position
 			direction.x = target_position.normalized().x # the direction to the target
-			velocity.x = (SPEED * FOLLOW_SPEED_MULTIPLIER) * direction.x # set the velocity towards the target's direction
+			if target_position.length() > 2.0:
+				velocity.x = (SPEED * FOLLOW_SPEED_MULTIPLIER) * direction.x # set the velocity towards the target's direction
+			else:
+				velocity.x = 0.0
 			if target_position.length() > MAX_SIGHT_DISTANCE: # if target is out of sight range
 				enter_state(States.PATROL)
 		_: # somehow a state is not assigned?
@@ -72,7 +75,7 @@ func _physics_process(delta: float) -> void:
 func enter_state(new_state:int) -> void :
 	state_label.text = States.keys()[new_state]
 	randomize()
-	state = new_state
+	state = States.values()[new_state]
 	match state:
 		States.IDLE: # ====================================================== IDLE STATE ENTER
 			_reset_target() # there is no target while a slime is relaxing
