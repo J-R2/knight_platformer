@@ -1,0 +1,151 @@
+[gd_scene load_steps=18 format=3 uid="uid://bonnt65m41n00"]
+
+[ext_resource type="Script" path="res://bat.gd" id="1_rr522"]
+[ext_resource type="Texture2D" uid="uid://o7hbk1ptg0yc" path="res://scenes/actors/enemy/bat/bat.png" id="2_nhxda"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bn2br"]
+radius = 9.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tashc"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(0, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsrxo"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(32, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54w6x"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfu7a"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vlep"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(32, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k1jsi"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(64, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12x4b"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(96, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ul2uk"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1fc01"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jhssv"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nmxun"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(96, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bc5qm"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(0, 288, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ffflt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tashc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsrxo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54w6x")
+}],
+"loop": false,
+"name": &"attacking",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfu7a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4vlep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k1jsi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12x4b")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ul2uk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1fc01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jhssv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nmxun")
+}],
+"loop": true,
+"name": &"hovering",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bc5qm")
+}],
+"loop": false,
+"name": &"sleeping",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nswp1"]
+size = Vector2(400, 300)
+
+[node name="Bat" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_rr522")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_bn2br")
+debug_color = Color(0.952941, 0.207843, 0.192157, 0.419608)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ffflt")
+animation = &"sleeping"
+
+[node name="EnemyDetectionArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
+position = Vector2(0, 130)
+shape = SubResource("RectangleShape2D_nswp1")
+debug_color = Color(0.787689, 0.41818, 0.289295, 0.42)
+
+[node name="VisionRayCast" type="RayCast2D" parent="."]
+collide_with_areas = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -18.0
+offset_top = -34.0
+offset_right = 22.0
+offset_bottom = -11.0
+text = "test"

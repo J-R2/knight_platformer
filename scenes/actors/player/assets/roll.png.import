@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ef4psfp0p7p8"
-path="res://.godot/imported/wall_climb_nomovement.png-16d18ced3f0a9f4a8aec1896c510211b.ctex"
+uid="uid://d3kumlqi1wa2d"
+path="res://.godot/imported/roll.png-33aa06846a8f47bd002fdb02e0fe2c2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/actors/player/art/wall_climb_nomovement.png"
-dest_files=["res://.godot/imported/wall_climb_nomovement.png-16d18ced3f0a9f4a8aec1896c510211b.ctex"]
+source_file="res://scenes/actors/player/assets/roll.png"
+dest_files=["res://.godot/imported/roll.png-33aa06846a8f47bd002fdb02e0fe2c2f.ctex"]
 
 [params]
 

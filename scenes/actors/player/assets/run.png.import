@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3kumlqi1wa2d"
-path="res://.godot/imported/roll.png-52af30b416d350db02cb5a8030fa6c29.ctex"
+uid="uid://r5hnt133ihwh"
+path="res://.godot/imported/run.png-daabf26387d7893b76898a99b648f26f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/actors/player/art/roll.png"
-dest_files=["res://.godot/imported/roll.png-52af30b416d350db02cb5a8030fa6c29.ctex"]
+source_file="res://scenes/actors/player/assets/run.png"
+dest_files=["res://.godot/imported/run.png-daabf26387d7893b76898a99b648f26f.ctex"]
 
 [params]
 

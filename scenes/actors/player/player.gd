@@ -36,7 +36,7 @@ const DEFAULT_COLLISION_SIZE := Vector2(18, 38) ##NOTICE deprecated
 const DEFAULT_COLLISION_RADIUS :int = 8 ## the default size of the collision_shape2d
 const DEFAULT_COLLISION_HEIGHT :int = 38 ## the default size of the collision_shape2d
 
-const DIALOGUE_ICON = preload("res://scenes/actors/player/art/icons/talk.png") ## icon to display when player enters dialogue_interaction_area
+const DIALOGUE_ICON = preload("res://scenes/actors/player/assets/icons/talk.png") ## icon to display when player enters dialogue_interaction_area
 
 var direction := Vector2.RIGHT ## keeps track of the players facing direction left or right, sign()ed
 

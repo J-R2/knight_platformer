@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://du5nt1yytyjhu"
-path="res://.godot/imported/talk.png-e7ec8a7b756b5bdfdfaf453d19770b77.ctex"
+uid="uid://o7hbk1ptg0yc"
+path="res://.godot/imported/bat.png-1647e3a3c812d19e6a62abf1bad71d5c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/actors/player/art/icons/talk.png"
-dest_files=["res://.godot/imported/talk.png-e7ec8a7b756b5bdfdfaf453d19770b77.ctex"]
+source_file="res://scenes/actors/enemy/bat/bat.png"
+dest_files=["res://.godot/imported/bat.png-1647e3a3c812d19e6a62abf1bad71d5c.ctex"]
 
 [params]
 

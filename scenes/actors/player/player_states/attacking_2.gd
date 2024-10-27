@@ -30,8 +30,9 @@ func physics_update(delta:float) -> void :
 
 
 func on_attack_area_area_entered(area:Area2D):
-	print("Strong attack: ", randi_range(MIN_ATTACK_DAMAGE, MAX_ATTACK_DAMAGE), " damage to ", area.name)
 	player.attack_area_shape_2d.set_deferred("disabled", true)
+	if area.has_method("take_damage"):
+		area.take_damage(randi_range(MIN_ATTACK_DAMAGE, MAX_ATTACK_DAMAGE))
 
 
 func on_attack_area_body_entered(body:Node2D):

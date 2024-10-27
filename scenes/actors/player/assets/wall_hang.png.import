@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cur6rxe5xbg16"
-path="res://.godot/imported/crouch.png-3b31f3eda06e5e9cf3603d35588f0b5b.ctex"
+uid="uid://u206r15d1jdf"
+path="res://.godot/imported/wall_hang.png-f7c184c4a6a7df2c8c5ad1ae8a9e6352.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/actors/player/art/crouch.png"
-dest_files=["res://.godot/imported/crouch.png-3b31f3eda06e5e9cf3603d35588f0b5b.ctex"]
+source_file="res://scenes/actors/player/assets/wall_hang.png"
+dest_files=["res://.godot/imported/wall_hang.png-f7c184c4a6a7df2c8c5ad1ae8a9e6352.ctex"]
 
 [params]
 

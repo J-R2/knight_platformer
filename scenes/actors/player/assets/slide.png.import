@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://byk6iyfnblpjq"
-path="res://.godot/imported/attack_nomovement.png-881c9898eb105b5a2832afd388347196.ctex"
+uid="uid://0o3deayilqj1"
+path="res://.godot/imported/slide.png-28446f1770898d60b4c4ba6201c4aa9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/actors/player/art/attack_nomovement.png"
-dest_files=["res://.godot/imported/attack_nomovement.png-881c9898eb105b5a2832afd388347196.ctex"]
+source_file="res://scenes/actors/player/assets/slide.png"
+dest_files=["res://.godot/imported/slide.png-28446f1770898d60b4c4ba6201c4aa9d.ctex"]
 
 [params]
 
