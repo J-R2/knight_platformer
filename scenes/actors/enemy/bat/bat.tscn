@@ -140,6 +140,7 @@ shape = SubResource("RectangleShape2D_nswp1")
 debug_color = Color(0.787689, 0.41818, 0.289295, 0.42)
 
 [node name="VisionRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(15, 0)
 collide_with_areas = true
 
 [node name="Label" type="Label" parent="."]

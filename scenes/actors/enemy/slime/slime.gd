@@ -89,6 +89,8 @@ func enter_state(new_state:int) -> void :
 			direction = [Vector2.LEFT, Vector2.RIGHT].pick_random() # the direction to go while patrolling
 		States.FOLLOW: # ==================================================== FOLLOW STATE ENTER
 			animated_sprite_2d.play(MOVE_ANIMATION)
+		_: # invalid state
+			printerr("Invalid attempt to enter a slime state.")
 
 
 ## resets the slime's target and vision raycast2d

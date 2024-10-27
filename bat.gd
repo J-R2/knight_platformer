@@ -4,11 +4,11 @@ extends Area2D
 
 var health :float = 10.0 ## the health of a bat, 1 hit kill
 const DAMAGE_AMOUNT :float = 5.0 ## the damage a bat deals to a target
-const SPEED :float = 40.0 ## the bat's speed
+const SPEED :float = 65.0 ## the bat's speed
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var enemy_detection_area: Area2D = $EnemyDetectionArea ## a large area that detects players
-@onready var vision_ray_cast: RayCast2D = $VisionRayCast #TODO set the target_position to the flight_destination, and prevent flying through walls
+@onready var vision_ray_cast: RayCast2D = $VisionRayCast ## helps visualize a bats destination
 
 var target :Node2D = null ## the bat's target
 
@@ -17,6 +17,8 @@ var state := States.SLEEPING ## keeps track of the current state
 var state_time_counter := 0.0 ## counts upwards towards state_duration
 var state_duration := 0.0 ## how long to stay in a state
 var flight_pattern_destination_position := Vector2.ZERO ## the global position coordinates to fly to during the flying state
+var attack_pattern_destination_position := Vector2.ZERO ## the global position coordinates to fly to during an attack - near the targets chest
+const ATTACK_SPEED_MULTIPLIER :float = 2.5 ## bats fly faster when attacking
 
 # the animated_sprite animation names as constants
 const SLEEPING_ANIMATION := "sleeping"
@@ -43,17 +45,23 @@ func _physics_process(delta: float) -> void:
 			# state duration code
 			state_time_counter += delta
 			if state_time_counter > state_duration:
-				enter_state(States.FLYING)
+				var next_state = [States.FLYING, States.ATTACKING].pick_random()
+				enter_state(next_state)
 		States.FLYING: # ======================================================== FLYING STATE
 			vision_ray_cast.target_position = flight_pattern_destination_position - global_position # visualize flight pattern
 			global_position = global_position.move_toward(flight_pattern_destination_position, delta * SPEED) # move the bat
 			# state change condition
 			if global_position == flight_pattern_destination_position:
-				var next_state = [States.HOVERING, States.FLYING].pick_random()
+				var next_state = [States.HOVERING, States.FLYING, States.ATTACKING].pick_random()
 				enter_state(next_state)
 		States.ATTACKING: # ===================================================== ATTACKING STATE
-			pass
-		_:
+			vision_ray_cast.target_position = attack_pattern_destination_position - global_position # visualize attack pattern
+			global_position = global_position.move_toward(attack_pattern_destination_position, delta * (SPEED * ATTACK_SPEED_MULTIPLIER)) # move the bat
+			# state change condition
+			if global_position == attack_pattern_destination_position:
+				animated_sprite.frame = 2
+				enter_state(States.FLYING)
+		_: # a state is somehow not assigned
 			printerr("Bat does not have a state. Fix it.")
 	# ================================================================== END MATCH STATEMENT
 
@@ -74,22 +82,24 @@ func enter_state(new_state:int) -> void :
 			animated_sprite.play(FLYING_ANIMATION)
 			_set_flight_pattern()
 		States.ATTACKING: # ===================================================== ATTACKING ENTER
-			pass
+			animated_sprite.stop()
+			animated_sprite.animation = ATTACKING_ANIMATION
+			animated_sprite.frame = 0
+			attack_pattern_destination_position = target.global_position
+			attack_pattern_destination_position.y -= 25
+			animated_sprite.flip_h = true if (attack_pattern_destination_position.x < global_position.x) else false # flip the sprite
+			animated_sprite.frame = 1
+		_: # invalid state assignment
+			printerr("Invalid attempt to enter a bat state.")
 	# ================================================================== END MATCH STATEMENT
 
 
-## picks a random position above the target, sends out a raycast to detect wall collisions, and sets the flight_pattern_destination_position
+## picks a random position above the target, and sets the flight_pattern_destination_position
 func _set_flight_pattern() -> void :
 	flight_pattern_destination_position = target.global_position # start at target
 	flight_pattern_destination_position.y -= randi_range(40, 120) # go up some
 	flight_pattern_destination_position.x += [randi_range(-120, -40), randi_range(40, 120)].pick_random() # go left or right some
 	vision_ray_cast.target_position = flight_pattern_destination_position - global_position # visualize flight pattern
-	#ALERT this code is supposed to detect if the bat wishes to fly through a wall, then course correct to stop before hitting the wall.
-	#issue - will not detect wall collisions when very close to a wall, even after forcing update
-	#vision_ray_cast.force_raycast_update()
-	if vision_ray_cast.is_colliding():
-		flight_pattern_destination_position = vision_ray_cast.get_collision_point()
-		#vision_ray_cast.target_position = flight_pattern_destination_position - global_position # updated in _physics_process - duplicated just in case
 	animated_sprite.flip_h = true if (flight_pattern_destination_position.x < global_position.x) else false # flip the sprite
 
 
@@ -99,7 +109,7 @@ func _start_combat() -> void :
 	# the sleeping sprite frame is upside down, and the hover animation is always upright, this will flip it for beginning takeoff
 	animated_sprite.rotation = PI * takeoff_direction_x
 	animated_sprite.play(HOVERING_ANIMATION)
-	var duration = 1.5 # the duration of the takeoff animation
+	var duration = 1.0 # the duration of the takeoff animation
 	# move the bat left or right and rotates during that movement
 	var horizontal_tween = create_tween()
 	horizontal_tween.set_trans(Tween.TRANS_SINE)
