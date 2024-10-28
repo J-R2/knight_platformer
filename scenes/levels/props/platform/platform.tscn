@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqiux4awxm1xc"]
+
+[ext_resource type="Texture2D" uid="uid://cr8vrq86chju" path="res://scenes/levels/props/platform/art/platform.png" id="1_yqt0i"]
+[ext_resource type="PackedScene" uid="uid://bi5sm0vimkou1" path="res://scenes/levels/props/wall_hang_area/wall_hang_area.tscn" id="2_jmc44"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8rbce"]
+size = Vector2(124, 12)
+
+[node name="Platform" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_yqt0i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_8rbce")
+
+[node name="WallHangArea" parent="." instance=ExtResource("2_jmc44")]
+position = Vector2(-63, -3)
+
+[node name="WallHangArea2" parent="." instance=ExtResource("2_jmc44")]
+position = Vector2(63, -3)
