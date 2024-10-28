@@ -34,6 +34,7 @@ func physics_update(delta:float) -> void :
 
 
 
+
 func on_attack_area_area_entered(area:Area2D):
 	player.attack_area_shape_2d.set_deferred("disabled", true)
 	if area.has_method("take_damage"):
@@ -44,7 +45,6 @@ func on_attack_area_body_entered(body:Node2D):
 	player.attack_area_shape_2d.set_deferred("disabled", true)
 	if body.has_method("take_damage"):
 		body.take_damage(randi_range(MIN_ATTACK_DAMAGE, MAX_ATTACK_DAMAGE))
-
 
 func exit() -> void :
 	# reset the variables to default values

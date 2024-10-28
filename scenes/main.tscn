@@ -27,7 +27,6 @@ position = Vector2(105, 238)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="Slimes" type="Node2D" parent="."]
-visible = false
 
 [node name="Slime" parent="Slimes" instance=ExtResource("9_86cvf")]
 position = Vector2(234, 228)
@@ -39,7 +38,6 @@ position = Vector2(341, 140)
 position = Vector2(378, 330)
 
 [node name="Bats" type="Node2D" parent="."]
-visible = false
 
 [node name="Bat" parent="Bats" instance=ExtResource("9_lv53g")]
 position = Vector2(351, 201)
@@ -49,18 +47,3 @@ position = Vector2(283, 86)
 
 [node name="Bat3" parent="Bats" instance=ExtResource("9_lv53g")]
 position = Vector2(491, 199)
-
-[node name="Bat4" parent="Bats" instance=ExtResource("9_lv53g")]
-position = Vector2(506, 201)
-
-[node name="Bat5" parent="Bats" instance=ExtResource("9_lv53g")]
-position = Vector2(523, 200)
-
-[node name="Bat6" parent="Bats" instance=ExtResource("9_lv53g")]
-position = Vector2(484, 84)
-
-[node name="Bat7" parent="Bats" instance=ExtResource("9_lv53g")]
-position = Vector2(319, 85)
-
-[node name="Bat8" parent="Bats" instance=ExtResource("9_lv53g")]
-position = Vector2(333, 86)
