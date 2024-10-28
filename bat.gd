@@ -2,9 +2,8 @@
 ## The bat will follow and attack the target, with a varying hover / flight pattern.
 extends Area2D
 
-var health :float = 10.0 ## the health of a bat, 1 hit kill
 const DAMAGE_AMOUNT :float = 5.0 ## the damage a bat deals to a target
-const SPEED :float = 65.0 ## the bat's speed
+const SPEED :float = 75.0 ## the bat's speed
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var enemy_detection_area: Area2D = $EnemyDetectionArea ## a large area that detects players
@@ -25,6 +24,7 @@ const SLEEPING_ANIMATION := "sleeping"
 const HOVERING_ANIMATION := "hovering"
 const FLYING_ANIMATION := "flying"
 const ATTACKING_ANIMATION := "attacking"
+const DEATH_ANIMATION := "death"
 
 @onready var label: Label = $Label #TESTING for testing purposes, displays the current state
 
@@ -124,18 +124,30 @@ func _start_combat() -> void :
 	vertical_tween.tween_property(self, "global_position:y", global_position.y + takeoff_distance_y, duration / 2)
 	vertical_tween.tween_property(self, "global_position:y", global_position.y - takeoff_distance_y/2, duration / 2)
 	# transition to the hovering state after takeoff
-	horizontal_tween.finished.connect(func()->void:enter_state(States.HOVERING))
+	await horizontal_tween.finished
+	enter_state(States.HOVERING)
 
 
-# subtract damage amount from bat's health, and play the hit animation
+## subtract damage amount from bat's health, and play the death animation
 func take_damage(amount:float) -> void :
-	health -= amount
-	_play_hit_animation()
+	set_physics_process(false)
+	_play_death_animation()
 
 
-#TODO modulate the color / spritesheet has a death animation / blood splatter?
-func _play_hit_animation() -> void :
-	if health < 0.0 : queue_free()
+## find the ground directly under the bat, the bat will fall to that position while playing the death animation, then queue_free()
+func _play_death_animation() -> void :
+	animated_sprite.play(DEATH_ANIMATION)
+	vision_ray_cast.target_position = Vector2(0, 500)
+	vision_ray_cast.force_raycast_update() # must force update to get accurate collision point
+	vision_ray_cast.target_position = vision_ray_cast.get_collision_point() - global_position # visualize the death point
+	var ground_position = vision_ray_cast.get_collision_point() # position where the bat will land while dying
+	ground_position.y -= 10	
+	var tween = create_tween()
+	var duration = ground_position.length() * .001
+	tween.tween_property(self, "global_position", ground_position, duration)
+	self.modulate = Color.DARK_RED
+	tween.finished.connect(queue_free)
+	
 
 
 ## the bat made contact with a target
@@ -151,20 +163,6 @@ func _on_enemy_detection_area_body_entered(body:Node2D) -> void :
 	if body is Player and target == null: # only assign target once #INFO maybe free enemy_detection_area?
 		target = body
 		_start_combat()
-		#_start_movement_tweening() #ALERT breaks the flight state for some reason
-
-
-#ALERT breaks the flight state for some reason (infinite flight loop)?
-## moves the bat up and down after takeoff
-func _start_movement_tweening() -> void :
-	var tween = create_tween()
-	var duration :float = .8
-	var _amount := 5
-	var y_pos = position.y
-	tween.tween_property(self, "position:y", y_pos-_amount, duration / 2)
-	tween.tween_property(self, "position:y", y_pos+_amount, duration)
-	tween.tween_property(self, "position:y", y_pos, duration / 2)
-	tween.set_loops()
 
 
 ## resets the counter to 0 and the new duration to a pre-randomized wait_time

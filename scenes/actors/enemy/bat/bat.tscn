@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bonnt65m41n00"]
+[gd_scene load_steps=20 format=3 uid="uid://bonnt65m41n00"]
 
 [ext_resource type="Script" path="res://bat.gd" id="1_rr522"]
 [ext_resource type="Texture2D" uid="uid://o7hbk1ptg0yc" path="res://scenes/actors/enemy/bat/bat.png" id="2_nhxda"]
@@ -17,6 +17,14 @@ region = Rect2(32, 224, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_54w6x"]
 atlas = ExtResource("2_nhxda")
 region = Rect2(64, 224, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ai30s"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(64, 256, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aabvg"]
+atlas = ExtResource("2_nhxda")
+region = Rect2(96, 256, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kfu7a"]
 atlas = ExtResource("2_nhxda")
@@ -72,6 +80,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ai30s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aabvg")
+}],
+"loop": false,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_kfu7a")
 }, {
 "duration": 1.0,
@@ -114,7 +133,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nswp1"]
-size = Vector2(400, 300)
+size = Vector2(280, 170)
 
 [node name="Bat" type="Area2D"]
 collision_layer = 4
@@ -135,7 +154,7 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyDetectionArea"]
-position = Vector2(0, 130)
+position = Vector2(0, 67)
 shape = SubResource("RectangleShape2D_nswp1")
 debug_color = Color(0.787689, 0.41818, 0.289295, 0.42)
 
