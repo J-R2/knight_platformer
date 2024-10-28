@@ -21,6 +21,10 @@ func enter() -> void :
 func physics_update(delta :float) -> void :
 	# set the crouching collision shape's orientation
 	player.set_collision_orientation(CROUCHING_COLLISION_POS)
+	# fall if not on floor
+	if ! player.is_on_floor():
+		finished.emit(FALLING)
+		return
 	# player can move while crouching
 	player.move_player(delta)
 	# play the animation if moving, reset to first frame if not moving

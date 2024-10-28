@@ -133,7 +133,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nswp1"]
-size = Vector2(280, 170)
+size = Vector2(325, 175)
 
 [node name="Bat" type="Area2D"]
 collision_layer = 4

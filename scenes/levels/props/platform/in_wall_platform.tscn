@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bi5sm0vimkou1" path="res://scenes/levels/props/wall_hang_area/wall_hang_area.tscn" id="2_dmy3u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4v8b8"]
-size = Vector2(126, 12)
+size = Vector2(125, 12)
 
 [node name="InWallPlatform" type="StaticBody2D"]
 
@@ -13,8 +13,9 @@ position = Vector2(49, 1)
 texture = ExtResource("1_xg1kp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(48, 3)
+position = Vector2(47.5, 3)
 shape = SubResource("RectangleShape2D_4v8b8")
 
 [node name="WallHangArea" parent="." instance=ExtResource("2_dmy3u")]
-position = Vector2(112, -2)
+position = Vector2(109, -2)
+scale = Vector2(1.5, 1.7)

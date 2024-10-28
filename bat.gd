@@ -143,7 +143,7 @@ func _play_death_animation() -> void :
 	var ground_position = vision_ray_cast.get_collision_point() # position where the bat will land while dying
 	ground_position.y -= 10	
 	var tween = create_tween()
-	var duration = ground_position.length() * .001
+	var duration = (ground_position - global_position).length() * .01
 	tween.tween_property(self, "global_position", ground_position, duration)
 	self.modulate = Color.DARK_RED
 	tween.finished.connect(queue_free)

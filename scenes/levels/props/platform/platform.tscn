@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bi5sm0vimkou1" path="res://scenes/levels/props/wall_hang_area/wall_hang_area.tscn" id="2_jmc44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rbce"]
-size = Vector2(124, 12)
+size = Vector2(122, 12)
 
 [node name="Platform" type="StaticBody2D"]
 
@@ -16,7 +16,9 @@ position = Vector2(0, 2)
 shape = SubResource("RectangleShape2D_8rbce")
 
 [node name="WallHangArea" parent="." instance=ExtResource("2_jmc44")]
-position = Vector2(-63, -3)
+position = Vector2(-60, -3)
+scale = Vector2(1.5, 1.7)
 
 [node name="WallHangArea2" parent="." instance=ExtResource("2_jmc44")]
-position = Vector2(63, -3)
+position = Vector2(60, -3)
+scale = Vector2(1.5, 1.7)

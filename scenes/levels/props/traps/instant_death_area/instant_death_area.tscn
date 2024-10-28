@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpjimgd00tto0"]
+
+[ext_resource type="Script" path="res://scenes/levels/props/traps/instant_death_area/instant_death_area.gd" id="1_43sho"]
+
+[node name="InstantDeathArea" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_43sho")

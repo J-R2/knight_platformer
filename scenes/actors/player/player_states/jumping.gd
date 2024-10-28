@@ -17,7 +17,7 @@ func enter() -> void :
 		finished.emit(get_parent().previous_state)
 		return
 	player.change_stamina(-JUMP_STAMINA_COST)
-	
+	player.wall_climb_detector_shape_2d.set_deferred("disabled", false)
 	# play the jump animation
 	player.animation_player.play(JUMPING.to_lower())
 	# set the jumping collision size
@@ -26,7 +26,6 @@ func enter() -> void :
 	player.velocity.y += -JUMP_FORCE
 	# move the player
 	player.move_and_slide()
-	player.wall_climb_detector_shape_2d.disabled = false
 	
 	
 func physics_update(delta:float) -> void :
@@ -40,7 +39,3 @@ func physics_update(delta:float) -> void :
 func _on_wall_climb_detector_area_entered(area :Area2D):
 	if area.is_in_group("wall_hanging_areas"):
 		finished.emit(WALL_HANGING)
-
-
-func exit() -> void :
-	player.wall_climb_detector_shape_2d.disabled = true

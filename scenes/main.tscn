@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://d26kyr3la0odx"]
+[gd_scene load_steps=9 format=3 uid="uid://d26kyr3la0odx"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_4lv1g"]
 [ext_resource type="PackedScene" uid="uid://berkqovuuonc" path="res://scenes/actors/player/player.tscn" id="1_lp82i"]
 [ext_resource type="PackedScene" uid="uid://21hupa01bhrp" path="res://scenes/levels/level_1/level_1_map.tscn" id="2_yflwl"]
 [ext_resource type="PackedScene" uid="uid://uwubb70vav56" path="res://systems/dialogue/dialogue_interaction_area.tscn" id="4_w8oji"]
 [ext_resource type="PackedScene" uid="uid://ckw65fegngx32" path="res://systems/dialogue/passive_dialogue_cue_area/passive_dialogue_cue_area.tscn" id="5_eicyn"]
+[ext_resource type="PackedScene" uid="uid://bhgd4nu6pk6ll" path="res://scenes/levels/props/traps/bear_trap/bear_trap.tscn" id="8_p25t5"]
 [ext_resource type="PackedScene" uid="uid://d4nxasgglm354" path="res://scenes/actors/enemy/slime/slime.tscn" id="9_86cvf"]
 [ext_resource type="PackedScene" uid="uid://bonnt65m41n00" path="res://scenes/actors/enemy/bat/bat.tscn" id="9_lv53g"]
 
@@ -47,3 +48,9 @@ position = Vector2(283, 86)
 
 [node name="Bat3" parent="Bats" instance=ExtResource("9_lv53g")]
 position = Vector2(491, 199)
+
+[node name="BearTrap" parent="." instance=ExtResource("8_p25t5")]
+position = Vector2(176, 258)
+
+[node name="BearTrap2" parent="." instance=ExtResource("8_p25t5")]
+position = Vector2(199, 258)
