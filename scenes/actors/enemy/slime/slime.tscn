@@ -83,6 +83,7 @@ size = Vector2(16, 13)
 
 [node name="Slime" type="CharacterBody2D"]
 collision_layer = 4
+collision_mask = 129
 floor_max_angle = 1.309
 script = ExtResource("1_38lxh")
 

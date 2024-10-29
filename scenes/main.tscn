@@ -38,6 +38,39 @@ position = Vector2(341, 140)
 [node name="Slime3" parent="Slimes" instance=ExtResource("9_86cvf")]
 position = Vector2(378, 330)
 
+[node name="Slime4" parent="Slimes" instance=ExtResource("9_86cvf")]
+position = Vector2(567, 151)
+
+[node name="Slime5" parent="Slimes" instance=ExtResource("9_86cvf")]
+position = Vector2(653, 232)
+
+[node name="Slime6" parent="Slimes" instance=ExtResource("9_86cvf")]
+position = Vector2(808, 164)
+
+[node name="Slime7" parent="Slimes" instance=ExtResource("9_86cvf")]
+position = Vector2(1091, 137)
+
+[node name="Slime8" parent="Slimes" instance=ExtResource("9_86cvf")]
+position = Vector2(988, 342)
+
+[node name="Slime9" parent="Slimes" instance=ExtResource("9_86cvf")]
+position = Vector2(1290, 142)
+
+[node name="Slime10" parent="Slimes" instance=ExtResource("9_86cvf")]
+position = Vector2(1525, 225)
+
+[node name="Slime11" parent="Slimes" instance=ExtResource("9_86cvf")]
+position = Vector2(1696, 145)
+
+[node name="Slime12" parent="Slimes" instance=ExtResource("9_86cvf")]
+position = Vector2(1701, 319)
+
+[node name="Slime13" parent="Slimes" instance=ExtResource("9_86cvf")]
+position = Vector2(1533, 769)
+
+[node name="Slime14" parent="Slimes" instance=ExtResource("9_86cvf")]
+position = Vector2(1717, 681)
+
 [node name="Bats" type="Node2D" parent="."]
 
 [node name="Bat" parent="Bats" instance=ExtResource("9_lv53g")]

@@ -100,6 +100,7 @@ use_item={
 2d_physics/layer_4="neutral_actor"
 2d_physics/layer_5="interactable"
 2d_physics/layer_6="destructable"
+2d_physics/layer_8="enemy_boundary"
 
 [rendering]
 

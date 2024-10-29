@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bqiux4awxm1xc"]
+[gd_scene load_steps=5 format=3 uid="uid://bqiux4awxm1xc"]
 
 [ext_resource type="Texture2D" uid="uid://cr8vrq86chju" path="res://scenes/levels/props/platform/art/platform.png" id="1_yqt0i"]
 [ext_resource type="PackedScene" uid="uid://bi5sm0vimkou1" path="res://scenes/levels/props/wall_hang_area/wall_hang_area.tscn" id="2_jmc44"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8rbce"]
 size = Vector2(122, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkecu"]
+size = Vector2(6, 57)
 
 [node name="Platform" type="StaticBody2D"]
 
@@ -22,3 +25,15 @@ scale = Vector2(1.5, 1.7)
 [node name="WallHangArea2" parent="." instance=ExtResource("2_jmc44")]
 position = Vector2(60, -3)
 scale = Vector2(1.5, 1.7)
+
+[node name="EnemyBoundary" type="StaticBody2D" parent="."]
+collision_layer = 128
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyBoundary"]
+position = Vector2(-60, -18.5)
+shape = SubResource("RectangleShape2D_jkecu")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="EnemyBoundary"]
+position = Vector2(60, -18.5)
+shape = SubResource("RectangleShape2D_jkecu")
