@@ -4,7 +4,7 @@ extends CharacterBody2D
 signal health_changed(new_health)
 signal stamina_changed(new_stamina)
 
-const MAX_SPEED := 150.0 ## player's max speed, pixel/second
+const MAX_SPEED := 160.0 ## player's max speed, pixel/second
 @export var speed := MAX_SPEED ## player speed, pixel/second
 
 # ==================================================== HEALTH STATS
