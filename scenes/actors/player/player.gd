@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 signal health_changed(new_health)
 signal stamina_changed(new_stamina)
+signal player_died
+var is_dead := false
 
 const MAX_SPEED := 160.0 ## player's max speed, pixel/second
 @export var speed := MAX_SPEED ## player speed, pixel/second
@@ -13,6 +15,8 @@ var health :float = MAX_HEALTH : ## the current value of player's health
 	set(value) :
 		health = clampf(value, 0, MAX_HEALTH)
 		health_changed.emit(health)
+		if is_zero_approx(health) and !is_dead:
+			_player_death_sequence()
 	get:
 		return health
 # ==================================================== STAMINA STATS
@@ -174,3 +178,17 @@ func move_player(delta:float) -> void :
 	# set the movement velocity
 	velocity.x = move_direction.x * speed
 	move_and_slide()
+
+
+func _player_death_sequence() -> void :
+	set_active(false)
+	animation_player.play("death")
+	player_died.emit()
+	
+	
+func set_active(is_active:bool) -> void :
+	is_dead = !is_active
+	set_physics_process(is_active)
+	set_process(is_active)
+	player_state_machine.set_process(is_active)
+	player_state_machine.set_physics_process(is_active)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bonnt65m41n00"]
 
-[ext_resource type="Script" path="res://bat.gd" id="1_rr522"]
+[ext_resource type="Script" path="res://scenes/actors/enemy/bat/bat.gd" id="1_rr522"]
 [ext_resource type="Texture2D" uid="uid://o7hbk1ptg0yc" path="res://scenes/actors/enemy/bat/bat.png" id="2_nhxda"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bn2br"]
