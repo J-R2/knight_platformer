@@ -58,3 +58,5 @@ A (Xbox) / Cross (Dualshock) - Jump / Interact
 
 
 [LPC Monsters](https://opengameart.org/content/lpc-monsters) by Charles Sanchez (CharlesGabriel), bagzie, and bluecarrot16
+
+[Terrible Knight Assets](https://ansimuz.itch.io/terryble-knight-assets) by [ansimuz](https://ansimuz.itch.io/)

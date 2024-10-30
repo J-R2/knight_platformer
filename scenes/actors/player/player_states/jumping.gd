@@ -34,6 +34,11 @@ func physics_update(delta:float) -> void :
 	# if player is going down change to falling state
 	if player.velocity.y > 0.0:
 		finished.emit(FALLING)
+	if player.is_on_floor():
+		if player.velocity.x > 0.0:
+			finished.emit(RUNNING)
+			return
+		finished.emit(IDLE)
 
 
 func _on_wall_climb_detector_area_entered(area :Area2D):
