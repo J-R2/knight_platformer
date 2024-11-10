@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://21hupa01bhrp"]
+[gd_scene load_steps=15 format=4 uid="uid://21hupa01bhrp"]
 
 [ext_resource type="TileSet" uid="uid://wpja6ipnvrk" path="res://scenes/levels/tileset_1.tres" id="1_tdx71"]
 [ext_resource type="PackedScene" uid="uid://ukh7bnuj8usx" path="res://scenes/levels/props/platform/in_wall_platform.tscn" id="2_5m27c"]
@@ -8,6 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://bhgd4nu6pk6ll" path="res://scenes/levels/props/traps/bear_trap/bear_trap.tscn" id="6_3nnjk"]
 [ext_resource type="PackedScene" uid="uid://bqiux4awxm1xc" path="res://scenes/levels/props/platform/platform.tscn" id="6_cb31q"]
 [ext_resource type="PackedScene" uid="uid://bpjimgd00tto0" path="res://scenes/levels/props/traps/instant_death_area/instant_death_area.tscn" id="7_m67of"]
+[ext_resource type="PackedScene" uid="uid://bonnt65m41n00" path="res://scenes/actors/enemy/bat/bat.tscn" id="9_vtm5f"]
+[ext_resource type="PackedScene" uid="uid://d4nxasgglm354" path="res://scenes/actors/enemy/slime/slime.tscn" id="10_7j3uh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n644s"]
 size = Vector2(8, 53)
@@ -289,22 +291,13 @@ position = Vector2(2515, -257)
 position = Vector2(2619, -257)
 
 [node name="BearTrap" parent="Traps" instance=ExtResource("6_3nnjk")]
-position = Vector2(1025, -159)
+position = Vector2(1302, -159)
 
 [node name="BearTrap2" parent="Traps" instance=ExtResource("6_3nnjk")]
-position = Vector2(1094, -159)
+position = Vector2(2031, -159)
 
 [node name="BearTrap3" parent="Traps" instance=ExtResource("6_3nnjk")]
-position = Vector2(2431, -159)
-
-[node name="BearTrap4" parent="Traps" instance=ExtResource("6_3nnjk")]
-position = Vector2(2344, -159)
-
-[node name="BearTrap5" parent="Traps" instance=ExtResource("6_3nnjk")]
-position = Vector2(2352, 290)
-
-[node name="BearTrap6" parent="Traps" instance=ExtResource("6_3nnjk")]
-position = Vector2(2816, 259)
+position = Vector2(1641, -159)
 
 [node name="Props" type="Node2D" parent="."]
 
@@ -340,3 +333,98 @@ position = Vector2(2127, 712)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Props/InstantDeathArea4"]
 shape = SubResource("RectangleShape2D_m8lf0")
 debug_color = Color(1, 0, 0, 0.329412)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Bat" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(654, 79)
+
+[node name="Bat2" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(1048, -305)
+
+[node name="Bat3" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(1074, -305)
+
+[node name="Bat4" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(369, 201)
+
+[node name="Bat5" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(1466, 79)
+
+[node name="Bat6" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(2256, 207)
+
+[node name="Bat7" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(2425, 175)
+
+[node name="Bat8" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(2449, 176)
+
+[node name="Bat9" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(1906, 592)
+
+[node name="Bat10" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(2385, 591)
+
+[node name="Bat11" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(1261, 687)
+
+[node name="Bat12" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(590, 687)
+
+[node name="Bat13" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(612, 688)
+
+[node name="Bat14" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(631, 687)
+
+[node name="Bat15" parent="Enemies" instance=ExtResource("9_vtm5f")]
+position = Vector2(2463, 1092)
+
+[node name="Slime" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(537, 764)
+
+[node name="Slime2" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(386, 338)
+
+[node name="Slime3" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(1172, -181)
+
+[node name="Slime4" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(1479, -187)
+
+[node name="Slime5" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(1795, -181)
+
+[node name="Slime6" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(2174, -193)
+
+[node name="Slime7" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(2718, 234)
+
+[node name="Slime8" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(2328, 270)
+
+[node name="Slime9" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(1883, 655)
+
+[node name="Slime10" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(1317, 752)
+
+[node name="Slime11" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(1129, 1321)
+
+[node name="Slime12" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(1445, 1374)
+
+[node name="Slime13" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(1635, 1384)
+
+[node name="Slime14" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(1880, 1379)
+
+[node name="Slime15" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(2215, 1383)
+
+[node name="Slime16" parent="Enemies" instance=ExtResource("10_7j3uh")]
+position = Vector2(2388, 1373)

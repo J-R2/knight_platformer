@@ -58,6 +58,8 @@ var direction := Vector2.RIGHT ## keeps track of the players facing direction le
 @onready var player_state_machine: StateMachine = $StateMachine
 
 
+
+
 #================================================================================ TESTING
 @onready var state_label: Label = $StateLabel
 #================================================================================ END TESTING
@@ -99,7 +101,7 @@ func _physics_process(delta: float) -> void:
 		health = MAX_HEALTH
 		stamina = MAX_STAMINA
 #================================================================================ END TESTING
-
+	
 
 
 ## Restarts the stamina recovery cooldown timer, disables player is_stamina_recovery_able
@@ -159,6 +161,10 @@ func set_collision_orientation(collision_position :Vector2 = DEFAULT_COLLISION_P
 	wall_climb_detector_shape_2d.position.x = wall_detector_position_x * direction.x
 	attack_area_shape_2d.position.x = attack_area_position_x * direction.x
 
+	
+
+
+
 
 ## takes a position, radius, and height, to set the player collision capsule shape for each state
 func set_collision_shape(collision_position :Vector2 = DEFAULT_COLLISION_POS, collision_radius :int = DEFAULT_COLLISION_RADIUS, collision_height :int = DEFAULT_COLLISION_HEIGHT):
@@ -178,6 +184,7 @@ func move_player(delta:float) -> void :
 	# set the movement velocity
 	velocity.x = move_direction.x * speed
 	move_and_slide()
+
 
 
 func _player_death_sequence() -> void :
